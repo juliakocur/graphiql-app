@@ -1,5 +1,13 @@
+import SignInForm from '../../components/Forms/SignInForm';
+import { logInWithEmailAndPassword } from '../../firebase/firebase';
+
 const LoginPage = () => {
-  return <div>login</div>;
+  return (
+    <>
+      <h1>SignIn</h1>
+      <SignInForm submitHandler={logInWithEmailAndPassword} />
+    </>
+  );
 };
 
 export default LoginPage;
