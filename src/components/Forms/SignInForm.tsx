@@ -1,10 +1,21 @@
-import { Button, TextField } from '@mui/material';
+import { Alert, AlertTitle, Button, TextField } from '@mui/material';
 import './form.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IFormData, schema } from './validationSchema';
+import { useEffect, useState } from 'react';
+import { auth } from '../../firebase/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 
-const SignInForm = () => {
+const SignInForm = ({
+  submitHandler,
+}: {
+  submitHandler: (email: string, password: string) => Promise<void>;
+}) => {
+  const [user] = useAuthState(auth);
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,12 +25,23 @@ const SignInForm = () => {
     resolver: yupResolver<IFormData>(schema),
   });
 
-  const onSubmit = (data: IFormData) => console.log(data);
+  const onSubmit = (data: IFormData) => {
+    const { email, password } = data;
+    submitHandler(email, password).catch((err: Error) => {
+      setErrorMessage(err.message);
+      setTimeout(() => {
+        setErrorMessage(undefined);
+      }, 2000);
+    });
+  };
+
+  useEffect(() => {
+    if (user) navigate('/main', { replace: true });
+  }, [user, navigate]);
 
   return (
     <>
       <section className="sign-in-section">
-        <h1>SignIn</h1>
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="form">
           <TextField
             fullWidth
@@ -50,6 +72,13 @@ const SignInForm = () => {
             Submit
           </Button>
         </form>
+
+        {errorMessage && (
+          <Alert severity="error" className="alert">
+            <AlertTitle>Error</AlertTitle>
+            {errorMessage}
+          </Alert>
+        )}
       </section>
     </>
   );

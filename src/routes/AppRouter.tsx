@@ -26,7 +26,7 @@ const allRoutes: RouteObject = {
       element: <MainPage />,
     },
     {
-      path: '*',
+      path: AllRoutes.notFound.path,
       element: <NotFoundPage />,
     },
     {
