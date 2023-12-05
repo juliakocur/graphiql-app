@@ -3,15 +3,16 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import MainPage from '../pages/MainPage/MainPage';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
-import { Outlet, RouteObject, useRoutes } from 'react-router-dom';
+import { RouteObject, useRoutes } from 'react-router-dom';
 import { memo } from 'react';
 import { AllRoutes } from './allRoutes';
+import BasePage from '../pages/BasePage/BasePage';
 
 const allRoutes: RouteObject = {
   path: AllRoutes.root.path,
   element: (
     <>
-      <Outlet />
+      <BasePage />
     </>
   ),
   children: [
