@@ -7,6 +7,25 @@
   width: 100%;
 }
 
+.password-control {
+  position: relative;
+  width: 100%;
+}
+.show-password-icon {
+  width: 30px;
+  height: 30px;
+  position: absolute !important;
+  top: 13px;
+  right: 10px;
+}
+input[name='password'] {
+  padding-right: 40px;
+}
+
+#sign-in-password-helper-text {
+  min-height: 40px;
+}
+
 .sign-in-section {
   display: flex;
   width: 100%;

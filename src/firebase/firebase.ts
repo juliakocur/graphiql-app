@@ -20,7 +20,6 @@ const registerWithEmailAndPassword = async (
   email: string,
   password: string
 ) => {
-  // try {
   const res = await createUserWithEmailAndPassword(auth, email, password);
   const user = res.user;
   await addDoc(collection(db, 'users'), {
