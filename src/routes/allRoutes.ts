@@ -21,7 +21,7 @@ const baseRoutes = {
   },
 
   notFound: {
-    path: 'not-found',
+    path: '*',
     name: 'Not found page',
   },
 
