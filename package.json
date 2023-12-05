@@ -14,6 +14,9 @@
     "cover": "vitest run --coverage --reporter=verbose ./src"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.20",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react-redux": "^7.1.30",
     "react": "^18.2.0",
