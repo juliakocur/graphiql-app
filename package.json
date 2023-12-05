@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint --fix ./src",
-    "format:fix": "prettier --write ./src",
+    "prettier-fix": "prettier --write ./src",
     "preview": "vite preview",
     "prepare": "husky install",
     "test": "vitest run --reporter=verbose",

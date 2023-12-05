@@ -34,7 +34,7 @@
 
 - `npm run lint ` - run ESLint to identify and fix code style issues and errors
 
-- `npm run format:fix` - fix code formatting with Prettier
+- `npm run prettier-fix` - fix code formatting with Prettier
 
 - `npm run test` - run the process of executing tests and generating test outcome reports using vitest
 
