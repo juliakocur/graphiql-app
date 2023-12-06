@@ -8,7 +8,7 @@ const Welcome = () => {
     <>
       <section className="welcome-container">
         <div className="welcome">
-          <h1 className="welcom-header">GraphiQL</h1>
+          <h1 className="welcome-header">GraphiQL</h1>
           <p className="welcome-text">
             GraphQL is a query language for your API, and a server-side runtime
             for executing queries using a type system you define for your data.

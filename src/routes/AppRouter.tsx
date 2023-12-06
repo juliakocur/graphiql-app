@@ -1,29 +1,64 @@
 import WelcomePage from '../pages/WelcomePage/WelcomePage';
 import LoginPage from '../pages/LoginPage/LoginPage';
-import MainPage from '../pages/MainPage/MainPage';
+import EditorPage from '../pages/EditorPage/EditorPage';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
-import { RouteObject, useRoutes } from 'react-router-dom';
+import {
+  Navigate,
+  RouteObject,
+  useLocation,
+  useRoutes,
+} from 'react-router-dom';
 import { memo } from 'react';
 import { AllRoutes } from './allRoutes';
 import BasePage from '../pages/BasePage/BasePage';
+import { useAppSelector } from '../redux/reduxHooks';
+
+const AppRedirect = ({ path = '/' }: { path?: string }) => {
+  const location = useLocation();
+  return <Navigate to={path} state={{ from: location }} replace />;
+};
+
+interface IPropsProtectedRoute {
+  children: JSX.Element;
+}
+
+const ProtectedAuthRoute = ({ children }: IPropsProtectedRoute) => {
+  const { isTokenValid } = useAppSelector((state) => state.authReducer);
+
+  return isTokenValid ? children : <AppRedirect />;
+};
+
+const ProtectedNotAuthRoute = ({ children }: IPropsProtectedRoute) => {
+  const { isTokenValid } = useAppSelector((state) => state.authReducer);
+
+  return !isTokenValid ? (
+    children
+  ) : (
+    <AppRedirect path={`/${AllRoutes.editor.path}`} />
+  );
+};
 
 const allRoutes: RouteObject = {
   path: AllRoutes.root.path,
-  element: (
-    <>
-      <BasePage />
-    </>
-  ),
+  element: <BasePage />,
   children: [
     { index: true, element: <WelcomePage /> },
     {
       path: AllRoutes.login.path,
-      element: <LoginPage />,
+      element: (
+        <ProtectedNotAuthRoute>
+          <LoginPage />
+        </ProtectedNotAuthRoute>
+      ),
     },
     {
-      path: AllRoutes.main.path,
-      element: <MainPage />,
+      path: AllRoutes.editor.path,
+      element: (
+        <ProtectedAuthRoute>
+          <EditorPage />
+        </ProtectedAuthRoute>
+      ),
     },
     {
       path: AllRoutes.notFound.path,
@@ -31,7 +66,15 @@ const allRoutes: RouteObject = {
     },
     {
       path: AllRoutes.registration.path,
-      element: <RegistrationPage />,
+      element: (
+        <ProtectedNotAuthRoute>
+          <RegistrationPage />
+        </ProtectedNotAuthRoute>
+      ),
+    },
+    {
+      path: '*',
+      element: <AppRedirect path={`/${AllRoutes.notFound.path}`} />,
     },
   ],
 };
