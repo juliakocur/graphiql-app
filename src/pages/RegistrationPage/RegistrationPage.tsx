@@ -1,19 +1,24 @@
 import { useEffect } from 'react';
 import SignInForm from '../../components/Forms/SignInForm';
-import { auth, registerWithEmailAndPassword } from '../../firebase/firebase';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { registerWithEmailAndPassword } from '../../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../redux/reduxHooks';
 
 const RegistrationPage = () => {
-  const [user] = useAuthState(auth);
+  const { isTokenValid } = useAppSelector((state) => state.authReducer);
   const navigate = useNavigate();
   useEffect(() => {
-    if (user) navigate('/main', { replace: true });
-  }, [user, navigate]);
+    if (isTokenValid) navigate('/main', { replace: true });
+  }, [isTokenValid, navigate]);
+
   return (
     <>
-      <h1>SignUp</h1>
-      <SignInForm submitHandler={registerWithEmailAndPassword} />
+      {!isTokenValid && (
+        <>
+          <h1>SignUp</h1>
+          <SignInForm submitHandler={registerWithEmailAndPassword} />
+        </>
+      )}
     </>
   );
 };

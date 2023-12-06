@@ -1,9 +1,9 @@
 import HeaderNav from './HeaderNav/HeaderNav';
 const Header = () => {
   return (
-    <div>
+    <header>
       <HeaderNav />
-    </div>
+    </header>
   );
 };
 

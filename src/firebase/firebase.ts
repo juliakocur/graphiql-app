@@ -4,9 +4,12 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import { firebaseConfig } from './firebaseConfig';
+import { store } from '../redux/store';
+import { authSlice } from '../redux/AuthSlice';
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -20,7 +23,6 @@ const registerWithEmailAndPassword = async (
   email: string,
   password: string
 ) => {
-  // try {
   const res = await createUserWithEmailAndPassword(auth, email, password);
   const user = res.user;
   await addDoc(collection(db, 'users'), {
@@ -42,3 +44,8 @@ export {
   registerWithEmailAndPassword,
   logout,
 };
+
+onAuthStateChanged(auth, (user) => {
+  console.log(user);
+  store.dispatch(authSlice.actions.setIsTokenValid(!!user));
+});
