@@ -26,11 +26,12 @@ footer {
 .year {
   font-size: 18px;
   color: #80b5e4;
+  padding: 10px;
 }
 
 .git-accounts img {
   width: 50px;
   background-color: #80b5e4;
   border-radius: 100%;
-  margin: 10px;
+  margin: 0 10px;
 }
