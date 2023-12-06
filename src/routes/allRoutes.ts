@@ -12,13 +12,13 @@ const baseRoutes = {
     path: 'login',
     name: 'Login page',
   },
-  main: {
-    path: 'main',
-    name: 'Main page',
+  editor: {
+    path: 'editor',
+    name: 'Editor page',
   },
 
   notFound: {
-    path: '*',
+    path: 'not-found',
     name: 'Not found page',
   },
 
