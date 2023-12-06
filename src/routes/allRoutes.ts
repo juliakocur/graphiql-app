@@ -7,10 +7,7 @@ const baseRoutes = {
     path: '/',
     name: 'Root',
   },
-  welcome: {
-    path: 'welcome',
-    name: 'Welcome page',
-  },
+
   login: {
     path: 'login',
     name: 'Login page',
@@ -21,7 +18,7 @@ const baseRoutes = {
   },
 
   notFound: {
-    path: 'not-found',
+    path: '*',
     name: 'Not found page',
   },
 
