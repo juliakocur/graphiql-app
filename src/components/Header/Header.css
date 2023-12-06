@@ -1,0 +1,74 @@
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 44px;
+  color: #80b5e4;
+  cursor: pointer;
+}
+
+.logo img {
+  max-width: 85px;
+  position: relative;
+  top: -17px;
+  z-index: 1;
+}
+
+header {
+  background-color: rgb(1 13 24);
+  display: flex;
+  justify-content: center;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  padding: 20px;
+}
+
+.hexagon {
+  width: 90px;
+  height: 50px;
+  background: #80b5e4;
+  position: relative;
+  margin: 20px;
+}
+.hexagon::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  right: 1px;
+  border-left: 45px solid transparent;
+  border-right: 45px solid transparent;
+  border-bottom: 25px solid #80b5e4;
+}
+.hexagon::after {
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  right: 1px;
+  border-left: 45px solid transparent;
+  border-right: 45px solid transparent;
+  border-top: 25px solid #80b5e4;
+}
+
+.button-nav {
+  border: 2px solid #80b5e4;
+  border-radius: 10px;
+  background: transparent;
+  color: #80b5e4;
+  margin: 5px;
+}
+
+.button-nav:hover {
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.8);
+}
+
+@media (max-width: 420px) {
+  .header-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
