@@ -1,0 +1,37 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  padding: 20px;
+}
+
+footer {
+  background-color: rgb(1 13 24);
+  display: flex;
+  justify-content: center;
+  min-height: 130px;
+}
+
+.rss-logo img {
+  min-width: 170px;
+}
+
+.rss-logo {
+  background-color: #80b5e4;
+  cursor: pointer;
+}
+
+.year {
+  font-size: 18px;
+  color: #80b5e4;
+  padding: 10px;
+}
+
+.git-accounts img {
+  width: 50px;
+  background-color: #80b5e4;
+  border-radius: 100%;
+  margin: 0 10px;
+}
