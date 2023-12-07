@@ -1,5 +1,6 @@
+import Editor from '../../components/Editor/Editor';
 const EditorPage = () => {
-  return <div>main</div>;
+  return <Editor />;
 };
 
 export default EditorPage;
