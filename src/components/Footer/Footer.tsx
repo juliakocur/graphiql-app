@@ -1,4 +1,4 @@
-import './footer.css';
+import './Footer.css';
 import rs_school from '/rs_school.svg';
 import git from '/git.png';
 
