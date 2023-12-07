@@ -14,6 +14,7 @@ import { useContext, useState } from 'react';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
+import { ValidationErrorsCodes } from '../../utils/constants';
 
 const SignInForm = ({
   submitHandler,
@@ -22,6 +23,7 @@ const SignInForm = ({
 }) => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const { language } = useContext(LanguageContext);
+
   const {
     register,
     handleSubmit,
@@ -55,7 +57,13 @@ const SignInForm = ({
             label={Localization[language].form.email}
             {...register('email')}
             error={!!errors.email}
-            helperText={errors.email?.message || ' '}
+            helperText={
+              errors.email?.message
+                ? Localization[language].form.formValidationErrors[
+                    errors.email.message as ValidationErrorsCodes
+                  ]
+                : ' '
+            }
           />
           <FormControl className="password-control">
             <TextField
@@ -66,7 +74,13 @@ const SignInForm = ({
               error={!!errors.password}
               {...register('password')}
               type={showPassword ? 'password' : 'text'}
-              helperText={errors.password?.message || ' '}
+              helperText={
+                errors.password?.message
+                  ? Localization[language].form.formValidationErrors[
+                      errors.password.message as ValidationErrorsCodes
+                    ]
+                  : ' '
+              }
             ></TextField>
             <Checkbox
               className="show-password-icon"

@@ -1,3 +1,5 @@
+import { ValidationErrorsCodes } from '../utils/constants';
+
 export const Localization = {
   en: {
     editor: 'Editor',
@@ -29,6 +31,20 @@ export const Localization = {
       email: 'Email',
       password: 'Password',
       submit: 'submit',
+      formValidationErrors: {
+        [ValidationErrorsCodes.required]: 'Field is mandatory',
+        [ValidationErrorsCodes.invalidEmail]: 'Email has an invalid format',
+        [ValidationErrorsCodes.passwordLength]:
+          'Password length must be at least 8 characters',
+        [ValidationErrorsCodes.passwordUppercaseLetter]:
+          'Password must contain at least one uppercase letter',
+        [ValidationErrorsCodes.passwordLowercaseLetter]:
+          'Password must contain at least one lowercase letter',
+        [ValidationErrorsCodes.passwordSpecialChar]:
+          'Password must contain at least one special character',
+        [ValidationErrorsCodes.passwordDigit]:
+          'Password must contain at least one digit',
+      },
     },
   },
   ru: {
@@ -61,6 +77,21 @@ export const Localization = {
       email: 'Электронная почта',
       password: 'Пароль',
       submit: 'Отправить',
+      formValidationErrors: {
+        [ValidationErrorsCodes.required]: 'Поле является обязательным',
+        [ValidationErrorsCodes.invalidEmail]:
+          'Неверный формат электронной почты',
+        [ValidationErrorsCodes.passwordLength]:
+          'Длина пароля должна быть не менее 8 символов',
+        [ValidationErrorsCodes.passwordUppercaseLetter]:
+          'Пароль должен содержать хотя бы 1 заглавную букву',
+        [ValidationErrorsCodes.passwordLowercaseLetter]:
+          'Пароль должен содержать хотя бы 1 строчную букву',
+        [ValidationErrorsCodes.passwordSpecialChar]:
+          'Пароль должен содержать хотя бы 1 специальный символ',
+        [ValidationErrorsCodes.passwordDigit]:
+          'Пароль должен содержать хотя бы 1 цифру',
+      },
     },
   },
 };
