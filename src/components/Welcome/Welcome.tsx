@@ -2,60 +2,56 @@ import './Welcome.css';
 import nat from '/nat.jpg';
 import ant from '/ant.jpg';
 import jul from '/jul.jpg';
+import { useContext } from 'react';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
 
 const Welcome = () => {
+  const { language } = useContext(LanguageContext);
   return (
     <>
       <section className="welcome-container">
         <div className="welcome">
           <h1 className="welcome-header">GraphiQL</h1>
           <p className="welcome-text">
-            GraphQL is a query language for your API, and a server-side runtime
-            for executing queries using a type system you define for your data.
-            GraphQL is not tied to any specific database or storage engine and
-            is instead backed by your existing code and data.
+            {Localization[language]['welcome-text1']}
           </p>
           <p className="welcome-text">
-            As an alternative to REST, GraphQL lets developers construct
-            requests that pull data from multiple data sources in a single API
-            call. Additionally, GraphQL gives API maintainers the flexibility to
-            add or deprecate fields without impacting existing queries.
-            Developers can build APIs with whatever methods they prefer, and the
-            GraphQL specification will ensure they function in predictable ways
-            to clients.
+            {Localization[language]['welcome-text2']}
           </p>
           <div className="welcome-cards">
             <div className="card">
-              <div className="card-title">Project</div>
+              <div className="card-title">
+                {Localization[language]['card-project'].title}
+              </div>
               <p className="card-text">
-                This application provides access to GraphQL for authorized
-                users. We tried to create an easy-to-use open source data
-                manipulation product for building web-oriented software
-                interfaces.
+                {Localization[language]['card-project'].text}
               </p>
             </div>
             <div className="card">
-              <div className="card-title">Course</div>
+              <div className="card-title">
+                {Localization[language]['card-course'].title}
+              </div>
               <p className="card-text">
-                This project was completed as part of the React course from
-                RSSchool. The course provides theoretical and practical
-                knowledge sufficient to start working on the React framework.
+                {Localization[language]['card-course'].text}
               </p>
             </div>
             <div className="card">
-              <div className="card-title">Developers</div>
+              <div className="card-title">
+                {Localization[language]['card-developers'].title}
+              </div>
               <ul className="developers-list">
                 <li className="developer">
                   <img src={nat} alt="developer" />
-                  Natalia Oreshkova
+                  {Localization[language]['card-developers'].nat}
                 </li>
                 <li className="developer">
                   <img src={ant} alt="developer" />
-                  Anton Belski
+                  {Localization[language]['card-developers'].ant}
                 </li>
                 <li className="developer">
                   <img src={jul} alt="developer" />
-                  Julia Kocur
+                  {Localization[language]['card-developers'].jul}
                 </li>
               </ul>
             </div>

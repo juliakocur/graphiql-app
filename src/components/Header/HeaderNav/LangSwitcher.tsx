@@ -1,6 +1,8 @@
 import { FormControlLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
+import { LanguageContext } from '../../../localization/LangContextProvider';
+import { useContext } from 'react';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -48,8 +50,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 const LangSwitcher = () => {
+  const { switchLanguage } = useContext(LanguageContext);
+
   return (
     <FormControlLabel
+      onClick={switchLanguage}
       control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
       label=""
     />

@@ -2,12 +2,14 @@ import { FC, PropsWithChildren, createContext, useState } from 'react';
 import { Languages, LocalStorageKeys } from '../utils/constants';
 
 type LanguageContextProps = {
-  language: string;
+  language: Languages;
   switchLanguage: () => void;
 };
 
 const LanguageContextInitial = {
-  language: localStorage.getItem(LocalStorageKeys.language) || Languages.ru,
+  language:
+    (localStorage.getItem(LocalStorageKeys.language) as Languages) ||
+    Languages.ru,
   switchLanguage: () => {},
 };
 
@@ -17,7 +19,8 @@ export const LanguageContext = createContext<LanguageContextProps>(
 
 const LanguageContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguage] = useState(
-    localStorage.getItem(LocalStorageKeys.language) || Languages.ru
+    (localStorage.getItem(LocalStorageKeys.language) as Languages) ||
+      Languages.ru
   );
 
   const switchLanguage = () => {
