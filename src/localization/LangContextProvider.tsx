@@ -20,13 +20,16 @@ export const LanguageContext = createContext<LanguageContextProps>(
 const LanguageContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [language, setLanguage] = useState(
     (localStorage.getItem(LocalStorageKeys.language) as Languages) ||
-      Languages.ru
+      Languages.en
   );
 
   const switchLanguage = () => {
-    setLanguage((prevLanguage) =>
-      prevLanguage === Languages.ru ? Languages.en : Languages.ru
-    );
+    setLanguage((prevLanguage) => {
+      const newLanguage =
+        prevLanguage === Languages.ru ? Languages.en : Languages.ru;
+      localStorage.setItem(LocalStorageKeys.language, newLanguage);
+      return newLanguage;
+    });
   };
 
   return (

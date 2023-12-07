@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import { LanguageContext } from '../../../localization/LangContextProvider';
 import { useContext } from 'react';
+import { Languages, LocalStorageKeys } from '../../../utils/constants';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -48,6 +49,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
+const defaultChecked =
+  localStorage.getItem(LocalStorageKeys.language) === Languages.ru;
 
 const LangSwitcher = () => {
   const { switchLanguage } = useContext(LanguageContext);
@@ -55,7 +58,9 @@ const LangSwitcher = () => {
   return (
     <FormControlLabel
       onClick={switchLanguage}
-      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+      control={
+        <MaterialUISwitch sx={{ m: 1 }} defaultChecked={defaultChecked} />
+      }
       label=""
     />
   );
