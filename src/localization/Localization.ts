@@ -46,6 +46,7 @@ export const Localization = {
           'Password must contain at least one digit',
       },
     },
+    error: 'Error',
   },
   ru: {
     editor: 'Редактор',
@@ -93,5 +94,6 @@ export const Localization = {
           'Пароль должен содержать хотя бы 1 цифру',
       },
     },
+    error: 'Ошибка',
   },
 };

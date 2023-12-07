@@ -1,11 +1,4 @@
-import {
-  Alert,
-  AlertTitle,
-  Button,
-  Checkbox,
-  FormControl,
-  TextField,
-} from '@mui/material';
+import { Button, Checkbox, FormControl, TextField } from '@mui/material';
 import './form.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -15,15 +8,16 @@ import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
 import { ValidationErrorsCodes } from '../../utils/constants';
+import ErrorAlert from '../Errors/ErrorAlert';
+import { FirebaseError } from 'firebase/app';
 
 const SignInForm = ({
   submitHandler,
 }: {
   submitHandler: (email: string, password: string) => Promise<void>;
 }) => {
-  const [errorMessage, setErrorMessage] = useState<string>();
   const { language } = useContext(LanguageContext);
-
+  const [errorCode, setErrorCode] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -38,11 +32,11 @@ const SignInForm = ({
 
   const onSubmit = (data: IFormData) => {
     const { email, password } = data;
-    submitHandler(email, password).catch((err: Error) => {
-      setErrorMessage(err.message);
+    submitHandler(email, password).catch((err: FirebaseError) => {
+      setErrorCode(err.code);
       setTimeout(() => {
-        setErrorMessage(undefined);
-      }, 2000);
+        setErrorCode(undefined);
+      }, 30000);
     });
   };
 
@@ -101,12 +95,7 @@ const SignInForm = ({
           </Button>
         </form>
 
-        {errorMessage && (
-          <Alert severity="error" className="alert">
-            <AlertTitle>Error</AlertTitle>
-            {errorMessage}
-          </Alert>
-        )}
+        <ErrorAlert errorCode={errorCode} />
       </section>
     </>
   );
