@@ -4,6 +4,7 @@ import { AllRoutes } from '../../../routes/allRoutes';
 import { authSlice } from '../../../redux/AuthSlice';
 import { logout } from '../../../firebase/firebase';
 import { useMemo } from 'react';
+import LangSwitcher from './LangSwitcher';
 
 const HeaderNav = () => {
   const { pathname } = useLocation();
@@ -45,7 +46,7 @@ const HeaderNav = () => {
         </>
       )}
 
-      <button className="button-nav">EN</button>
+      <LangSwitcher></LangSwitcher>
     </nav>
   );
 };
