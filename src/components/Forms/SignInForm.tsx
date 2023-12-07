@@ -36,7 +36,7 @@ const SignInForm = ({
       setErrorCode(err.code);
       setTimeout(() => {
         setErrorCode(undefined);
-      }, 30000);
+      }, 2000);
     });
   };
 
