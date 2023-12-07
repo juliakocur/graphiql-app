@@ -10,8 +10,10 @@ import './form.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IFormData, schema } from './validationSchema';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
 
 const SignInForm = ({
   submitHandler,
@@ -19,6 +21,7 @@ const SignInForm = ({
   submitHandler: (email: string, password: string) => Promise<void>;
 }) => {
   const [errorMessage, setErrorMessage] = useState<string>();
+  const { language } = useContext(LanguageContext);
   const {
     register,
     handleSubmit,
@@ -49,7 +52,7 @@ const SignInForm = ({
             fullWidth
             required
             id="sign-in-email"
-            label="Email"
+            label={Localization[language].form.email}
             {...register('email')}
             error={!!errors.email}
             helperText={errors.email?.message || ' '}
@@ -59,7 +62,7 @@ const SignInForm = ({
               fullWidth
               required
               id="sign-in-password"
-              label="Password"
+              label={Localization[language].form.password}
               error={!!errors.password}
               {...register('password')}
               type={showPassword ? 'password' : 'text'}
@@ -80,7 +83,7 @@ const SignInForm = ({
             disabled={!isValid}
             fullWidth
           >
-            Submit
+            {Localization[language].form.submit}
           </Button>
         </form>
 

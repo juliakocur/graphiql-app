@@ -33,7 +33,7 @@ export const Localization = {
   },
   ru: {
     editor: 'Редактор',
-    registration: 'Регистрация',
+    registration: 'Зарегистрироваться',
     login: 'Войти',
     logout: 'Выйти',
     submit: 'Отправить',
@@ -55,10 +55,10 @@ export const Localization = {
       ant: 'Антон Бельский',
       jul: 'Юлия Коцур',
     },
-    'registration-title': 'Регистрация',
-    'login-title': 'Вход',
+    'registration-title': 'Зарегистрироваться',
+    'login-title': 'Войти',
     form: {
-      email: 'Email',
+      email: 'Электронная почта',
       password: 'Пароль',
       submit: 'Отправить',
     },
