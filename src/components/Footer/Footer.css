@@ -35,3 +35,8 @@ footer {
   border-radius: 100%;
   margin: 0 10px;
 }
+
+.git-accounts img:hover,
+.rss-logo:hover {
+  box-shadow: 0 0 10px rgba(0, 195, 255, 0.8);
+}

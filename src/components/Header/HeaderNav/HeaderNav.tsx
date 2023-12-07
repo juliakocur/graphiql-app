@@ -3,7 +3,10 @@ import { useAppDispatch, useAppSelector } from '../../../redux/reduxHooks';
 import { AllRoutes } from '../../../routes/allRoutes';
 import { authSlice } from '../../../redux/AuthSlice';
 import { logout } from '../../../firebase/firebase';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import LangSwitcher from './LangSwitcher';
+import { LanguageContext } from '../../../localization/LangContextProvider';
+import { Localization } from '../../../localization/Localization';
 
 const HeaderNav = () => {
   const { pathname } = useLocation();
@@ -11,6 +14,7 @@ const HeaderNav = () => {
   const navigate = useNavigate();
   const { setIsTokenValid } = authSlice.actions;
   const dispatch = useAppDispatch();
+  const { language } = useContext(LanguageContext);
 
   const logoutClickHandler = () => {
     logout();
@@ -27,25 +31,31 @@ const HeaderNav = () => {
         <>
           {!isHiddenEditorBnt && (
             <NavLink to={AllRoutes.editor.path}>
-              <button className="button-nav">Editor</button>
+              <button className="button-nav">
+                {Localization[language].editor}
+              </button>
             </NavLink>
           )}
           <button className="button-nav" onClick={logoutClickHandler}>
-            Logout
+            {Localization[language].logout}
           </button>
         </>
       ) : (
         <>
           <NavLink to={AllRoutes.registration.path}>
-            <button className="button-nav">Registration</button>
+            <button className="button-nav">
+              {Localization[language].registration}
+            </button>
           </NavLink>
           <NavLink to={AllRoutes.login.path}>
-            <button className="button-nav">Login</button>
+            <button className="button-nav">
+              {Localization[language].login}
+            </button>
           </NavLink>
         </>
       )}
 
-      <button className="button-nav">EN</button>
+      <LangSwitcher></LangSwitcher>
     </nav>
   );
 };
