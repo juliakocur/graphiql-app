@@ -46,6 +46,5 @@ export {
 };
 
 onAuthStateChanged(auth, (user) => {
-  console.log(user);
   store.dispatch(authSlice.actions.setIsTokenValid(!!user));
 });
