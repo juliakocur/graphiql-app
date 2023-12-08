@@ -35,6 +35,7 @@
 .response-area {
   width: 280px;
   height: 180px;
+  resize: none;
 }
 
 .editor {
@@ -48,13 +49,13 @@
   top: 20px;
 }
 
-.varuables-headers {
+.variables-headers {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-.varuables,
+.variables,
 .headers {
   width: 280px;
   height: 180px;

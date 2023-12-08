@@ -8,8 +8,39 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import folder from '/folder.png';
+import { useState } from 'react';
 
 const Editor = () => {
+  interface Idata {
+    key: string;
+    value: string;
+  }
+  const [data, setData] = useState<Idata[]>([{ key: '', value: '' }]);
+  const handleChangeKey = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    index: number
+  ) => {
+    const newData = [...data];
+    newData[index].key = e.target.value;
+    setData(newData);
+  };
+  const handleChangeValue = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    index: number
+  ) => {
+    const newData = [...data];
+    newData[index].value = e.target.value;
+    setData(newData);
+  };
+  const handleClick = () => {
+    setData([...data, { key: '', value: '' }]);
+  };
+  const handleDelete = (item: number) => {
+    const newData = [...data];
+    newData.splice(item, 1);
+    setData(newData);
+  };
+
   return (
     <section className="graph">
       <div className="url-input">
@@ -43,8 +74,8 @@ const Editor = () => {
           </form>
         </div>
       </div>
-      <div className="varuables-headers">
-        <div className="varuables">
+      <div className="variables-headers">
+        <div className="variables">
           <div>
             <Accordion>
               <AccordionSummary
@@ -52,7 +83,7 @@ const Editor = () => {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
-                <Typography>Varuables</Typography>
+                <Typography>Variables</Typography>
               </AccordionSummary>
               <AccordionDetails>
                 <TextField fullWidth required type="text">
@@ -63,21 +94,33 @@ const Editor = () => {
           </div>
         </div>
         <div className="headers">
-          <div>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Headers</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <TextField fullWidth required type="text">
-                  Text...
-                </TextField>
-              </AccordionDetails>
-            </Accordion>
+          {data.map((item, index) => {
+            return (
+              <div className="header-item" key={index}>
+                <input type="checkbox" />
+                <input
+                  value={item.key}
+                  onChange={(e) => handleChangeKey(e, index)}
+                ></input>
+                <input
+                  value={item.value}
+                  onChange={(e) => handleChangeValue(e, index)}
+                ></input>
+                <div
+                  className="delete-button"
+                  onClick={() => handleDelete(index)}
+                >
+                  <Button variant="contained" size="small" type="submit">
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            );
+          })}
+          <div className="add-button" onClick={handleClick}>
+            <Button variant="contained" size="large" type="submit">
+              + Add new Header
+            </Button>
           </div>
         </div>
       </div>
