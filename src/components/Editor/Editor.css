@@ -8,32 +8,30 @@
 
 .graph-container {
   max-width: 1280px;
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
-  gap: 10px;
 }
 
 .doc-button img {
-  width: 30px;
+  width: 45px;
 }
 
 .doc-button {
   position: relative;
-  top: 10px;
-  width: 30px;
-  height: 50px;
+  top: 20px;
+  height: 40px;
+  padding: 0;
   background: transparent;
 }
 
 .graph-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
 }
 
 .request-area,
 .response-area {
-  width: 280px;
+  width: 310px;
   height: 180px;
   resize: none;
 }
@@ -43,22 +41,35 @@
   gap: 10px;
 }
 
+.request-section {
+  display: flex;
+  gap: 10px;
+}
+
 .submit-button {
   height: 30px;
   position: relative;
   top: 20px;
+  font-size: 24px;
 }
 
 .variables-headers {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
-.variables,
-.headers {
+.variables {
   width: 280px;
   height: 180px;
+}
+.headers {
+  min-height: 180px;
+}
+
+.header-item {
+  display: flex;
+  gap: 10px;
+  padding: 5px;
 }
 
 .url-input {
@@ -70,4 +81,9 @@
 .input-http {
   height: 30px;
   width: 280px;
+}
+
+.add-button {
+  width: 150px;
+  padding: 10px;
 }

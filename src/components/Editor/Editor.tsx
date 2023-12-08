@@ -58,15 +58,20 @@ const Editor = () => {
         </button>
         <div className="graph-content">
           <form className="editor">
-            <div className="request">
-              <div className="request-response-title">Request</div>
-              <textarea name="query" className="request-area"></textarea>
+            <div className="request-section">
+              <div className="request">
+                <div className="request-response-title">Request</div>
+                <textarea name="query" className="request-area"></textarea>
+              </div>
+              <div>
+                <div className="submit-button">
+                  <Button variant="contained" size="small" type="submit">
+                    ►
+                  </Button>
+                </div>
+              </div>
             </div>
-            <div className="submit-button">
-              <Button variant="contained" size="small" type="submit">
-                Submit
-              </Button>
-            </div>
+
             <div className="response">
               <div className="request-response-title">Response</div>
               <textarea name="query" className="response-area"></textarea>
@@ -74,25 +79,8 @@ const Editor = () => {
           </form>
         </div>
       </div>
+
       <div className="variables-headers">
-        <div className="variables">
-          <div>
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1a-content"
-                id="panel1a-header"
-              >
-                <Typography>Variables</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <TextField fullWidth required type="text">
-                  Text...
-                </TextField>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        </div>
         <div className="headers">
           {data.map((item, index) => {
             return (
@@ -111,16 +99,34 @@ const Editor = () => {
                   onClick={() => handleDelete(index)}
                 >
                   <Button variant="contained" size="small" type="submit">
-                    Delete
+                    DEL
                   </Button>
                 </div>
               </div>
             );
           })}
           <div className="add-button" onClick={handleClick}>
-            <Button variant="contained" size="large" type="submit">
+            <Button variant="contained" size="small" type="submit">
               + Add new Header
             </Button>
+          </div>
+        </div>
+        <div className="variables">
+          <div>
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>Variables</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <TextField fullWidth required type="text">
+                  Text...
+                </TextField>
+              </AccordionDetails>
+            </Accordion>
           </div>
         </div>
       </div>
