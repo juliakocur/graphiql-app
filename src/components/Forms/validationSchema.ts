@@ -1,34 +1,29 @@
 import * as yup from 'yup';
+import { ValidationErrorsCodes } from '../../utils/constants';
 
 export const schema = yup.object({
   email: yup
     .string()
-    .required('Field is mandatory')
-    .email('Email has an invalid format')
+    .required(ValidationErrorsCodes.required)
+    .email(ValidationErrorsCodes.invalidEmail)
     .matches(
       /[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/,
-      'Email has an invalid format'
+      ValidationErrorsCodes.invalidEmail
     ),
   password: yup
     .string()
-    .required('Field is mandatory')
+    .required(ValidationErrorsCodes.required)
     .test(
       'len',
-      'Password length must be at least 8 characters',
+      ValidationErrorsCodes.passwordLength,
       (password) => password.length >= 8
     )
-    .matches(
-      /[A-ZА-ЯЁ]/u,
-      'Password must contain at least one uppercase letter'
-    )
-    .matches(
-      /[a-zа-яё]/u,
-      'Password must contain at least one lowercase letter'
-    )
-    .matches(/[0-9]/u, 'Password must contain at least one digit')
+    .matches(/[A-ZА-ЯЁ]/u, ValidationErrorsCodes.passwordUppercaseLetter)
+    .matches(/[a-zа-яё]/u, ValidationErrorsCodes.passwordLowercaseLetter)
+    .matches(/[0-9]/u, ValidationErrorsCodes.passwordDigit)
     .matches(
       /[^A-ZА-Яa-zа-я0-9Ёё\s]/u,
-      'Password must contain at least one special character'
+      ValidationErrorsCodes.passwordSpecialChar
     ),
 });
 

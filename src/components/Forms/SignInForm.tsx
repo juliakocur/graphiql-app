@@ -1,24 +1,23 @@
-import {
-  Alert,
-  AlertTitle,
-  Button,
-  Checkbox,
-  FormControl,
-  TextField,
-} from '@mui/material';
+import { Button, Checkbox, FormControl, TextField } from '@mui/material';
 import './form.css';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IFormData, schema } from './validationSchema';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { VisibilityOff, Visibility } from '@mui/icons-material';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
+import { ValidationErrorsCodes } from '../../utils/constants';
+import ErrorAlert from '../Errors/ErrorAlert';
+import { FirebaseError } from 'firebase/app';
 
 const SignInForm = ({
   submitHandler,
 }: {
   submitHandler: (email: string, password: string) => Promise<void>;
 }) => {
-  const [errorMessage, setErrorMessage] = useState<string>();
+  const { language } = useContext(LanguageContext);
+  const [errorCode, setErrorCode] = useState<string>();
   const {
     register,
     handleSubmit,
@@ -33,10 +32,10 @@ const SignInForm = ({
 
   const onSubmit = (data: IFormData) => {
     const { email, password } = data;
-    submitHandler(email, password).catch((err: Error) => {
-      setErrorMessage(err.message);
+    submitHandler(email, password).catch((err: FirebaseError) => {
+      setErrorCode(err.code);
       setTimeout(() => {
-        setErrorMessage(undefined);
+        setErrorCode(undefined);
       }, 2000);
     });
   };
@@ -49,21 +48,33 @@ const SignInForm = ({
             fullWidth
             required
             id="sign-in-email"
-            label="Email"
+            label={Localization[language].form.email}
             {...register('email')}
             error={!!errors.email}
-            helperText={errors.email?.message || ' '}
+            helperText={
+              errors.email?.message
+                ? Localization[language].form.formValidationErrors[
+                    errors.email.message as ValidationErrorsCodes
+                  ]
+                : ' '
+            }
           />
           <FormControl className="password-control">
             <TextField
               fullWidth
               required
               id="sign-in-password"
-              label="Password"
+              label={Localization[language].form.password}
               error={!!errors.password}
               {...register('password')}
               type={showPassword ? 'password' : 'text'}
-              helperText={errors.password?.message || ' '}
+              helperText={
+                errors.password?.message
+                  ? Localization[language].form.formValidationErrors[
+                      errors.password.message as ValidationErrorsCodes
+                    ]
+                  : ' '
+              }
             ></TextField>
             <Checkbox
               className="show-password-icon"
@@ -80,16 +91,11 @@ const SignInForm = ({
             disabled={!isValid}
             fullWidth
           >
-            Submit
+            {Localization[language].form.submit}
           </Button>
         </form>
 
-        {errorMessage && (
-          <Alert severity="error" className="alert">
-            <AlertTitle>Error</AlertTitle>
-            {errorMessage}
-          </Alert>
-        )}
+        <ErrorAlert errorCode={errorCode} />
       </section>
     </>
   );
