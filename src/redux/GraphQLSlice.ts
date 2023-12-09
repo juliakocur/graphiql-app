@@ -4,7 +4,7 @@ interface IGraphState {
   url: string;
   query: string;
   headers: Record<string, string>;
-  variables: Record<string, string>;
+  variables: string;
   response: string;
 }
 
@@ -12,7 +12,7 @@ const initialState: IGraphState = {
   url: '',
   query: '',
   headers: {},
-  variables: {},
+  variables: '',
   response: '',
 };
 
@@ -29,7 +29,7 @@ export const graphSlice = createSlice({
     setResponse(state, action: PayloadAction<string>) {
       state.response = action.payload;
     },
-    setVariables(state, action: PayloadAction<Record<string, string>>) {
+    setVariables(state, action: PayloadAction<string>) {
       state.variables = action.payload;
     },
     setHeaders(state, action: PayloadAction<Record<string, string>>) {
