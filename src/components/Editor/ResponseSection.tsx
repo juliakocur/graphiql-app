@@ -1,8 +1,19 @@
-export const ResponseSection = () => {
+import useGetResponseData, {
+  IRequestParams,
+} from '../../hooks/useGetResponseData';
+
+export const ResponseSection = ({
+  params,
+}: {
+  params: IRequestParams | null;
+}) => {
+  const data = useGetResponseData({
+    params,
+  });
   return (
     <div className="response">
       <div className="request-response-title">Response</div>
-      <textarea name="query" className="response-area"></textarea>
+      <pre className="response-area">{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 };
