@@ -59,6 +59,12 @@
   width: 100%;
 }
 
+.variables-text {
+  width: 100%;
+  resize: none;
+  height: 80px;
+}
+
 .submit-button {
   height: 30px;
   position: relative;
