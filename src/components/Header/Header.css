@@ -66,6 +66,38 @@ header {
   box-shadow: 0 0 10px rgba(0, 195, 255, 0.8);
 }
 
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 20px 0;
+  z-index: 10;
+  transition: 1s background-color;
+}
+
+.header.sticky {
+  position: fixed;
+  background-color: #80b5e4;
+}
+
+.sticky .logo {
+  color: rgb(1 13 24);
+}
+
+.sticky .button-nav {
+  border-color: rgb(1 13 24);
+  color: rgb(1 13 24);
+}
+
+.sticky span.MuiSwitch-track,
+.sticky .MuiSwitch-switchBase.Mui-checked + span.MuiSwitch-track {
+  background-color: rgb(1 13 24);
+}
+
+.sticky .button-nav:hover {
+  box-shadow: 0 0 10px rgba(1, 13, 24, 0.8);
+}
 @media (max-width: 420px) {
   .header-container {
     flex-direction: column;

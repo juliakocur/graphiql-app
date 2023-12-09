@@ -45,6 +45,7 @@ body {
 
 main {
   flex: 1 0 auto;
+  margin-top: 170px;
 }
 h1 {
   font-size: 3.2em;
@@ -62,8 +63,9 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+button:hover,
+.button-nav:hover {
+  border-color: #225db4;
 }
 
 #root {
