@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import { Prettify } from './Prettify';
 import { GraphHeaders } from './GraphHeaders';
 import { GraphVariables } from './GraphVariables';
 import { RequestSection } from './RequestSection';
@@ -21,7 +20,6 @@ export const GraphSection = () => {
   return (
     <>
       <div className="url-input">
-        <Prettify />
         <UrlInput />
       </div>
       <div className="graph-container">
