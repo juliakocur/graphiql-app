@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { Button } from '@mui/material';
+import { prettifyRequestQuery } from '../../utils/prettify';
 
 export const RequestSection = () => {
   const { setQuery } = graphSlice.actions;
@@ -20,7 +21,7 @@ export const RequestSection = () => {
   };
 
   const prettify = () => {
-    setRequestQuery(JSON.stringify(JSON.parse(requestQuery), null, 2));
+    setRequestQuery(prettifyRequestQuery(requestQuery));
   };
 
   return (
