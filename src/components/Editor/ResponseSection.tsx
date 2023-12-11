@@ -26,7 +26,7 @@ export const ResponseSection = ({
       <div className="response">
         <div className="request-response-title">Response</div>
         <pre className="response-area">
-          {JSON.stringify(data ?? '', null, 2)}
+          {JSON.stringify(data ?? undefined, null, 2)}
         </pre>
       </div>
     </>

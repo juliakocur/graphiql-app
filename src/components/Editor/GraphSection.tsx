@@ -8,6 +8,7 @@ import { UrlInput } from './UrlInput';
 import { Suspense, useState } from 'react';
 import { IRequestParams } from '../../types/types';
 import { graphSlice } from '../../redux/GraphQLSlice';
+import { ResponseFallback } from './ResponseFallback';
 
 export const GraphSection = () => {
   const { url, query, variables, headers } = useAppSelector(
@@ -49,8 +50,8 @@ export const GraphSection = () => {
             ►
           </Button>
         </div>
-        <Suspense fallback={<div>Loading</div>}>
-          <ResponseSection params={params} />{' '}
+        <Suspense fallback={<ResponseFallback />}>
+          <ResponseSection params={params} />
         </Suspense>
       </div>
       <div className="variables-headers">
