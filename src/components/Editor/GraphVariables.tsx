@@ -5,11 +5,14 @@ import {
   AccordionDetails,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useContext } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
 
 export const GraphVariables = () => {
+  const { language } = useContext(LanguageContext);
   const { setVariables } = graphSlice.actions;
   const dispatch = useAppDispatch();
   const { variables } = useAppSelector((state) => state.graphReducer);
@@ -35,7 +38,7 @@ export const GraphVariables = () => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>Variables</Typography>
+            <Typography>{Localization[language].variables}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <textarea

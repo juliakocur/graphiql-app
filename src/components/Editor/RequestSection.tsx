@@ -1,10 +1,13 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { Button } from '@mui/material';
 import { prettifyRequestQuery } from '../../utils/prettify';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
 
 export const RequestSection = () => {
+  const { language } = useContext(LanguageContext);
   const { setQuery } = graphSlice.actions;
   const dispatch = useAppDispatch();
   const { query } = useAppSelector((state) => state.graphReducer);
@@ -27,7 +30,9 @@ export const RequestSection = () => {
   return (
     <div className="editor request-section">
       <div className="request">
-        <div className="request-response-title">Request</div>
+        <div className="request-response-title">
+          {Localization[language].request}
+        </div>
         <textarea
           className="request-area"
           value={requestQuery}
@@ -37,7 +42,7 @@ export const RequestSection = () => {
       </div>
       <div className="prettify-button">
         <Button variant="contained" size="small" onClick={prettify}>
-          Prettify
+          {Localization[language].prettify}
         </Button>
       </div>
     </div>

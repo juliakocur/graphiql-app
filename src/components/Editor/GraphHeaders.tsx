@@ -1,14 +1,16 @@
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch } from '../../redux/reduxHooks';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
 
 export const GraphHeaders = () => {
   interface Idata {
     key: string;
     value: string;
   }
-
+  const { language } = useContext(LanguageContext);
   const [data, setData] = useState<Idata[]>([]);
   const { setHeaders } = graphSlice.actions;
   const dispatch = useAppDispatch();
@@ -73,7 +75,7 @@ export const GraphHeaders = () => {
             ></input>
             <div className="delete-button" onClick={() => handleDelete(index)}>
               <Button variant="contained" size="small" type="submit">
-                DEL
+                {Localization[language].del}
               </Button>
             </div>
           </div>
@@ -81,7 +83,7 @@ export const GraphHeaders = () => {
       })}
       <div className="add-button" onClick={handleClick}>
         <Button variant="contained" size="small" type="submit">
-          + Add new Header
+          {Localization[language].newHeader}
         </Button>
       </div>
     </div>
