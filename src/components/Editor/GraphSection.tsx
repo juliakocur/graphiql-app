@@ -3,20 +3,35 @@ import { GraphHeaders } from './GraphHeaders';
 import { GraphVariables } from './GraphVariables';
 import { RequestSection } from './RequestSection';
 import { ResponseSection } from './ResponseSection';
-import { useAppSelector } from '../../redux/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { UrlInput } from './UrlInput';
 import { Suspense, useState } from 'react';
-import { IRequestParams } from '../../hooks/useGetResponseData';
+import { IRequestParams } from '../../types/types';
+import { graphSlice } from '../../redux/GraphQLSlice';
 
 export const GraphSection = () => {
   const { url, query, variables, headers } = useAppSelector(
     (state) => state.graphReducer
   );
+
+  const { setError } = graphSlice.actions;
+  const dispatch = useAppDispatch();
+
   const [params, setParams] = useState<IRequestParams | null>(null);
 
   const clickHandler = () => {
-    setParams({ url, query, variables: JSON.parse(variables), headers });
+    try {
+      const parsedVariables = variables ? JSON.parse(variables) : {};
+
+      setParams({ url, query, variables: parsedVariables, headers });
+      dispatch(setError(null));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        dispatch(setError('vars-json'));
+      }
+    }
   };
+
   return (
     <>
       <div className="url-input">

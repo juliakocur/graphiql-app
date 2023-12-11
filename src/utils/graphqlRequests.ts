@@ -1,9 +1,18 @@
-export const sendRequest = async (
+interface GraphQLResponse<T> {
+  data: T;
+  errors: GraphQLError[];
+}
+
+interface GraphQLError {
+  message: string;
+}
+
+export async function sendRequest<T>(
   url: string,
   query: string,
   headers: Record<string, string> = {},
   variables: Record<string, string> = {}
-) => {
+) {
   try {
     const res = await fetch(url, {
       method: 'POST',
@@ -16,13 +25,15 @@ export const sendRequest = async (
         variables,
       }),
     });
-    if (!res.ok) {
-      throw new Error(`Error! Status: ${res.status}`);
+
+    const data: GraphQLResponse<T> = await res.json();
+
+    if (res.ok) {
+      return { data: data.data, error: null };
+    } else {
+      throw new Error(data.errors?.map((error) => error.message).join('\n'));
     }
-    const data = await res.json();
-    console.log(data);
-    return data;
   } catch (error) {
-    console.log(error);
+    return { data: null, error };
   }
-};
+}

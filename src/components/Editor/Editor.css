@@ -40,8 +40,13 @@
 .response-area {
   width: 100%;
   min-height: 180px;
+  height: auto;
   resize: none;
   text-align: start;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-height: 180px;
+  overflow-y: auto;
 }
 
 .editor {

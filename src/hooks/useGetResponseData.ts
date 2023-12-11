@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { sendRequest } from '../utils/graphqlRequests';
+import { IRequestParams, IResponseResultData } from '../types/types';
 
-const promiseWrapper = (promise: Promise<unknown>) => {
+interface IResultType {
+  data: IResponseResultData | null;
+  error: unknown | null;
+}
+
+const promiseWrapper = (promise: Promise<IResultType>) => {
   let status = 'pending';
-  let result: unknown;
+  let result: { data: IResponseResultData | null; error: unknown | null };
 
   const suspender = promise.then(
     (data) => {
@@ -30,15 +36,11 @@ const promiseWrapper = (promise: Promise<unknown>) => {
   };
 };
 
-export interface IRequestParams {
-  url: string;
-  query: string;
-  headers: Record<string, string>;
-  variables: Record<string, string>;
-}
-
 function useGetResponseData({ params }: { params: IRequestParams | null }) {
-  const [result, setResults] = useState<unknown>();
+  const [result, setResults] = useState<IResultType>({
+    data: null,
+    error: null,
+  });
 
   useEffect(() => {
     if (!params) {
@@ -46,7 +48,12 @@ function useGetResponseData({ params }: { params: IRequestParams | null }) {
     }
     const { url, query, headers, variables } = params;
     const getData = async () => {
-      const promise = sendRequest(url, query, headers, variables);
+      const promise = sendRequest<IResponseResultData>(
+        url,
+        query,
+        headers,
+        variables
+      );
       setResults(promiseWrapper(promise));
     };
 

@@ -8,8 +8,10 @@ import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
 import { ValidationErrorsCodes } from '../../utils/constants';
-import ErrorAlert from '../Errors/ErrorAlert';
 import { FirebaseError } from 'firebase/app';
+import ErrorAlert from '../Errors/ErrorAlert';
+import { graphSlice } from '../../redux/GraphQLSlice';
+import { useAppDispatch } from '../../redux/reduxHooks';
 
 const SignInForm = ({
   submitHandler,
@@ -17,7 +19,8 @@ const SignInForm = ({
   submitHandler: (email: string, password: string) => Promise<void>;
 }) => {
   const { language } = useContext(LanguageContext);
-  const [errorCode, setErrorCode] = useState<string>();
+  const { setError } = graphSlice.actions;
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
@@ -33,10 +36,7 @@ const SignInForm = ({
   const onSubmit = (data: IFormData) => {
     const { email, password } = data;
     submitHandler(email, password).catch((err: FirebaseError) => {
-      setErrorCode(err.code);
-      setTimeout(() => {
-        setErrorCode(undefined);
-      }, 2000);
+      dispatch(setError(err.code));
     });
   };
 
@@ -94,8 +94,7 @@ const SignInForm = ({
             {Localization[language].form.submit}
           </Button>
         </form>
-
-        <ErrorAlert errorCode={errorCode} />
+        <ErrorAlert />
       </section>
     </>
   );

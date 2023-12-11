@@ -1,6 +1,7 @@
 import './Editor.css';
 import { Documentation } from './Documentation';
 import { GraphSection } from './GraphSection';
+import ErrorAlert from '../Errors/ErrorAlert';
 
 const Editor = () => {
   return (
@@ -11,6 +12,7 @@ const Editor = () => {
       <div className="graph-section">
         <GraphSection></GraphSection>
       </div>
+      <ErrorAlert />
     </section>
   );
 };

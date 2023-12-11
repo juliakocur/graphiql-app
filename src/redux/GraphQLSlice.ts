@@ -5,7 +5,7 @@ interface IGraphState {
   query: string;
   headers: Record<string, string>;
   variables: string;
-  response: string;
+  error: string | null;
 }
 
 const initialState: IGraphState = {
@@ -13,7 +13,7 @@ const initialState: IGraphState = {
   query: '',
   headers: {},
   variables: '',
-  response: '',
+  error: null,
 };
 
 export const graphSlice = createSlice({
@@ -26,8 +26,8 @@ export const graphSlice = createSlice({
     setQuery(state, action: PayloadAction<string>) {
       state.query = action.payload;
     },
-    setResponse(state, action: PayloadAction<string>) {
-      state.response = action.payload;
+    setError(state, action: PayloadAction<string | null>) {
+      state.error = action.payload;
     },
     setVariables(state, action: PayloadAction<string>) {
       state.variables = action.payload;
