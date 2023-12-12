@@ -3,9 +3,11 @@ import storage from 'redux-persist/lib/storage';
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './AuthSlice';
+import graphReducer from './GraphQLSlice';
 
 const rootReducer = combineReducers({
   authReducer,
+  graphReducer,
 });
 
 const persistConfig: PersistConfig<RootState> = {

@@ -37,4 +37,6 @@ input[name='password'] {
 .alert {
   position: fixed;
   bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }

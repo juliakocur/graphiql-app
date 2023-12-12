@@ -40,7 +40,13 @@
 .response-area {
   width: 100%;
   min-height: 180px;
+  height: auto;
   resize: none;
+  text-align: start;
+  border: 1px solid black;
+  border-radius: 5px;
+  max-height: 180px;
+  overflow-y: auto;
 }
 
 .editor {
@@ -52,11 +58,18 @@
   width: 100%;
   display: flex;
   gap: 10px;
+  flex-direction: column;
 }
 
 .response,
 .request {
   width: 100%;
+}
+
+.variables-text {
+  width: 100%;
+  resize: none;
+  height: 80px;
 }
 
 .submit-button {

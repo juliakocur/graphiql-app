@@ -35,6 +35,10 @@ export const authErrors: IAuthErrorsType = {
   },
   'auth/email-already-in-use': {
     ru: 'Пользователь с таким email уже существует',
-    en: 'he provided email is already in use by an existing user',
+    en: 'The provided email is already in use by an existing user',
+  },
+  'vars-json': {
+    ru: 'Переменные должны быть представлены в формате JSON',
+    en: 'Variables are invalid JSON',
   },
 };
