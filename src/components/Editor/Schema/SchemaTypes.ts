@@ -15,16 +15,17 @@ export interface IFullType {
   kind: TypeKind;
   name: string;
   description: string;
-  fields: IField[];
-  inputFields: IInputValue[];
+  fields: IField[] | null;
+  inputFields: IInputValue[] | null;
   interfaces: IType;
-  enumValues: {
-    name: string;
-    description: string;
-    isDeprecated: boolean;
-    deprecationReason: string;
-  };
+  enumValues: IEnumValues[] | null;
   possibleTypes: IType;
+}
+export interface IEnumValues {
+  name: string;
+  description: string;
+  isDeprecated: boolean;
+  deprecationReason: string;
 }
 
 export enum TypeKind {

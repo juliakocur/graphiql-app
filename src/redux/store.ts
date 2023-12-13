@@ -4,16 +4,18 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './AuthSlice';
 import graphReducer from './GraphQLSlice';
+import schemaReducer from './SchemaSlice';
 
 const rootReducer = combineReducers({
   authReducer,
   graphReducer,
+  schemaReducer,
 });
 
 const persistConfig: PersistConfig<RootState> = {
   key: 'auth',
   storage,
-  whitelist: ['authReducer'],
+  whitelist: ['authReducer', 'graphReducer'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

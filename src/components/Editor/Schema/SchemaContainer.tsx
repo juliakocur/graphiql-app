@@ -2,12 +2,21 @@ import { useState } from 'react';
 import { IFullType, IIntrospectionquery } from './SchemaTypes';
 import { StartSchemaPage } from './StartSchemaPage';
 import { TypeSchemaPage } from './TypeSchemaPage';
+import { schemaSlice } from '../../../redux/SchemaSlice';
+import { useAppDispatch } from '../../../redux/reduxHooks';
+import { startSchemaPage } from '../../../utils/constants';
+import { SchemaNavigation } from './SchemaNavigation';
 
 export const SchemaContainer = ({ data }: { data: IIntrospectionquery }) => {
-  const startPage = 'Docs';
-  const [currentPage, setCurrentPage] = useState(startPage);
+  const [currentPage, setCurrentPage] = useState(startSchemaPage);
   const [typeInfo, setTypeInfo] = useState<IFullType>();
-  const typeClickHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const { pushToHistory } = schemaSlice.actions;
+  const dispatch = useAppDispatch();
+
+  const typeClickHandler = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    addToHistory = true
+  ) => {
     event.preventDefault();
     const selectedType = event.currentTarget.text;
 
@@ -15,14 +24,18 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionquery }) => {
     const typeInfo = data.__schema.types.filter(
       (type) => type.name === selectedType
     );
+    if (addToHistory) {
+      dispatch(pushToHistory(currentPage));
+    }
     setTypeInfo(typeInfo[0]);
     setCurrentPage(selectedType);
     console.log(typeInfo);
   };
   return (
     <div className="schema-container">
+      <SchemaNavigation typeClickHandler={typeClickHandler} />
       <h2>{currentPage}</h2>
-      {currentPage === startPage ? (
+      {currentPage === startSchemaPage ? (
         <StartSchemaPage data={data} typeClickHandler={typeClickHandler} />
       ) : (
         <TypeSchemaPage data={typeInfo} typeClickHandler={typeClickHandler} />
