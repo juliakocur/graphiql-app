@@ -40,6 +40,22 @@ export const TypeSchemaPage = ({
               </ul>
             </>
           )}
+
+          {data.enumValues && data.enumValues.length > 0 && (
+            <>
+              <h3>Enum values</h3>
+              <ul>
+                {data.enumValues.map((enumValue) => {
+                  return (
+                    <li key={enumValue.name}>
+                      <span>{enumValue.name}</span>
+                      <p>{enumValue.description}</p>
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          )}
         </div>
       )}
     </>
