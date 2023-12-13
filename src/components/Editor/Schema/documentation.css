@@ -1,0 +1,17 @@
+.documentation {
+  display: flex;
+}
+.schema-container {
+  width: 300px;
+  height: 100%;
+  background-color: antiquewhite;
+}
+.schema-page {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.argument {
+  display: inline;
+}
