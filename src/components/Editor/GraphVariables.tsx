@@ -45,7 +45,6 @@ export const GraphVariables = () => {
               extensions={[graphql()]}
               onChange={(value) => {
                 setVariablesValue(value);
-                console.log(value);
               }}
               onBlur={onBlurHandler}
             />
