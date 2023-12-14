@@ -106,4 +106,7 @@ ul {
   main {
     margin-top: 125px;
   }
+  main h1 {
+    font-size: 28px;
+  }
 }
