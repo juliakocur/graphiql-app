@@ -11,11 +11,10 @@ footer {
   background-color: rgb(1 13 24);
   display: flex;
   justify-content: center;
-  min-height: 130px;
 }
 
 .rss-logo img {
-  min-width: 170px;
+  width: 130px;
 }
 
 .rss-logo {
@@ -39,4 +38,33 @@ footer {
 .git-accounts img:hover,
 .rss-logo:hover {
   box-shadow: 0 0 10px rgba(0, 195, 255, 0.8);
+}
+
+@media (max-width: 640px) {
+  .footer-container {
+    padding: 10px 20px;
+  }
+
+  .rss-logo img {
+    width: 110px;
+  }
+  .git-accounts {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .git-accounts img {
+    margin: 0;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer-container {
+    flex-direction: column-reverse;
+  }
+  .year {
+    padding: 3px;
+  }
 }

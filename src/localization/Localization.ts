@@ -56,8 +56,8 @@ export const Localization = {
   },
   ru: {
     editor: 'Редактор',
-    registration: 'Зарегистрироваться',
-    login: 'Войти',
+    registration: 'Регистрация',
+    login: 'Вход',
     logout: 'Выйти',
     submit: 'Отправить',
     'welcome-text1':
@@ -78,8 +78,8 @@ export const Localization = {
       ant: 'Антон Бельский',
       jul: 'Юлия Коцур',
     },
-    'registration-title': 'Зарегистрироваться',
-    'login-title': 'Войти',
+    'registration-title': 'Регистрация',
+    'login-title': 'Вход',
     form: {
       email: 'Электронная почта',
       password: 'Пароль',
