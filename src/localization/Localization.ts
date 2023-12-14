@@ -56,8 +56,8 @@ export const Localization = {
   },
   ru: {
     editor: 'Редактор',
-    registration: 'Зарегистрироваться',
-    login: 'Войти',
+    registration: 'Регистрация',
+    login: 'Вход',
     logout: 'Выйти',
     submit: 'Отправить',
     'welcome-text1':
