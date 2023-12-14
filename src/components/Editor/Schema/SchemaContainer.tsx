@@ -41,12 +41,6 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionQuery }) => {
     event.preventDefault();
     const selectedType = event.currentTarget.text;
     getTypeInfo(selectedType, addToHistory);
-    /*     const typeInfo = findType(selectedType);
-    if (addToHistory) {
-      dispatch(pushToHistory(selectedType));
-    }
-    setTypeInfo(typeInfo);
-    setCurrentPage(selectedType); */
   };
 
   return (

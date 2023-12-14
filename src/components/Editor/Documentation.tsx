@@ -9,6 +9,7 @@ import { IntrospectionQuery } from './Schema/SchemaQuery';
 import './Schema/documentation.css';
 import { schemaSlice } from '../../redux/SchemaSlice';
 import { Loader } from '../Loader/Loader';
+import { Drawer } from '@mui/material';
 
 export const Documentation = () => {
   const { url } = useAppSelector((state) => state.graphReducer);
@@ -48,10 +49,24 @@ export const Documentation = () => {
     setIsDocsOpen(openSchema);
   };
 
+  const toggleDrawer =
+    () => (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+      setIsDocsOpen(false);
+    };
+
   return (
     <>
       {startSchemaData && isDocsOpen && (
-        <SchemaContainer data={startSchemaData} />
+        <Drawer anchor={'left'} open={isDocsOpen} onClose={toggleDrawer()}>
+          <SchemaContainer data={startSchemaData} />
+        </Drawer>
       )}
       {isSchemaLoading && (
         <div className="schema-loader">
