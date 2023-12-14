@@ -79,3 +79,9 @@
 .arg-type {
   color: rgb(216, 125, 40);
 }
+
+.schema-loader {
+  position: relative;
+  top: 127px;
+  height: 40px;
+}
