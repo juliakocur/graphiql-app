@@ -1,11 +1,12 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { startSchemaPage } from '../utils/constants';
 
 interface ISchemaState {
   history: string[];
 }
 
 const initialState: ISchemaState = {
-  history: [],
+  history: [startSchemaPage],
 };
 
 export const schemaSlice = createSlice({
@@ -19,7 +20,7 @@ export const schemaSlice = createSlice({
       state.history.pop();
     },
     clearHistory(state) {
-      state.history = [];
+      state.history = [startSchemaPage];
     },
   },
 });

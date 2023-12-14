@@ -1,11 +1,11 @@
-import { IType, TypeKind } from './SchemaTypes';
+import { IType, TypeClickHandler, TypeKind } from './SchemaTypes';
 
 export const ArgumentType = ({
   type,
   typeClickHandler,
 }: {
   type: IType | null;
-  typeClickHandler: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  typeClickHandler: TypeClickHandler;
 }) => {
   if (!type) {
     return <></>;

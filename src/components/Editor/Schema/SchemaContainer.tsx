@@ -1,36 +1,44 @@
 import { useState } from 'react';
-import { IFullType, IIntrospectionquery } from './SchemaTypes';
+import {
+  IFullType,
+  IIntrospectionquery,
+  TypeClickHandler,
+} from './SchemaTypes';
 import { StartSchemaPage } from './StartSchemaPage';
 import { TypeSchemaPage } from './TypeSchemaPage';
 import { schemaSlice } from '../../../redux/SchemaSlice';
-import { useAppDispatch } from '../../../redux/reduxHooks';
+import { useAppDispatch, useAppSelector } from '../../../redux/reduxHooks';
 import { startSchemaPage } from '../../../utils/constants';
 import { SchemaNavigation } from './SchemaNavigation';
 
 export const SchemaContainer = ({ data }: { data: IIntrospectionquery }) => {
-  const [currentPage, setCurrentPage] = useState(startSchemaPage);
-  const [typeInfo, setTypeInfo] = useState<IFullType>();
+  const findType = (selectedType: string) =>
+    data.__schema.types.filter((type) => type.name === selectedType)[0];
+
+  const { history } = useAppSelector((state) => state.schemaReducer);
+  const lastHistoryElement = history.at(-1);
+  const [currentPage, setCurrentPage] = useState(
+    lastHistoryElement || startSchemaPage
+  );
+  const [typeInfo, setTypeInfo] = useState<IFullType>(findType(currentPage));
+
   const { pushToHistory } = schemaSlice.actions;
   const dispatch = useAppDispatch();
 
-  const typeClickHandler = (
+  const typeClickHandler: TypeClickHandler = (
     event: React.MouseEvent<HTMLAnchorElement>,
     addToHistory = true
   ) => {
     event.preventDefault();
     const selectedType = event.currentTarget.text;
-
-    console.log(selectedType);
-    const typeInfo = data.__schema.types.filter(
-      (type) => type.name === selectedType
-    );
+    const typeInfo = findType(selectedType);
     if (addToHistory) {
-      dispatch(pushToHistory(currentPage));
+      dispatch(pushToHistory(selectedType));
     }
-    setTypeInfo(typeInfo[0]);
+    setTypeInfo(typeInfo);
     setCurrentPage(selectedType);
-    console.log(typeInfo);
   };
+
   return (
     <div className="schema-container">
       <SchemaNavigation typeClickHandler={typeClickHandler} />

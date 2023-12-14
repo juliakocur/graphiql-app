@@ -61,3 +61,8 @@ export interface IType {
   name: string | null;
   ofType: IType | null;
 }
+
+export type TypeClickHandler = (
+  event: React.MouseEvent<HTMLAnchorElement>,
+  addToHistory?: boolean
+) => void;

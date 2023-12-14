@@ -1,18 +1,16 @@
 import { schemaSlice } from '../../../redux/SchemaSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/reduxHooks';
+import { TypeClickHandler } from './SchemaTypes';
 
 export const SchemaNavigation = ({
   typeClickHandler,
 }: {
-  typeClickHandler: (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    addToHistory?: boolean
-  ) => void;
+  typeClickHandler: TypeClickHandler;
 }) => {
   const { removeFromHistory } = schemaSlice.actions;
   const dispatch = useAppDispatch();
   const { history } = useAppSelector((state) => state.schemaReducer);
-  const lastHistoryElement = history.at(-1);
+  const lastHistoryElement = history.at(-2);
 
   return (
     <div>

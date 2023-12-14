@@ -1,11 +1,11 @@
-import { IIntrospectionquery } from './SchemaTypes';
+import { IIntrospectionquery, TypeClickHandler } from './SchemaTypes';
 
 export const StartSchemaPage = ({
   data,
   typeClickHandler,
 }: {
   data: IIntrospectionquery;
-  typeClickHandler: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  typeClickHandler: TypeClickHandler;
 }) => {
   return (
     <div className="shema-page">

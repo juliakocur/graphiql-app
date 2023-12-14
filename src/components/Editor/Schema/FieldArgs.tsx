@@ -1,12 +1,12 @@
 import { ArgumentType } from './ArgumentType';
-import { IInputValue } from './SchemaTypes';
+import { IInputValue, TypeClickHandler } from './SchemaTypes';
 
 export const FieldArgs = ({
   args,
   typeClickHandler,
 }: {
   args: IInputValue[];
-  typeClickHandler: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  typeClickHandler: TypeClickHandler;
 }) => {
   return (
     <>

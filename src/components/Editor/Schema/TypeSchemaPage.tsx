@@ -1,4 +1,4 @@
-import { IFullType } from './SchemaTypes';
+import { IFullType, TypeClickHandler } from './SchemaTypes';
 import { FieldArgs } from './FieldArgs';
 import { ArgumentType } from './ArgumentType';
 
@@ -6,8 +6,8 @@ export const TypeSchemaPage = ({
   data,
   typeClickHandler,
 }: {
-  data: IFullType | undefined;
-  typeClickHandler: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  data?: IFullType;
+  typeClickHandler: TypeClickHandler;
 }) => {
   const fields = data?.fields || data?.inputFields || [];
   return (
