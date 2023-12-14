@@ -1,4 +1,4 @@
-export interface IIntrospectionquery {
+export interface IIntrospectionQuery {
   __schema: {
     queryType: ITypeName;
     mutationType: ITypeName | null;

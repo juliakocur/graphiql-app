@@ -3,7 +3,7 @@ import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppSelector, useAppDispatch } from '../../redux/reduxHooks';
 import { sendRequest } from '../../utils/graphqlRequests';
 import folder from '/folder.png';
-import { IIntrospectionquery } from './Schema/SchemaTypes';
+import { IIntrospectionQuery } from './Schema/SchemaTypes';
 import { SchemaContainer } from './Schema/SchemaContainer';
 import { IntrospectionQuery } from './Schema/SchemaQuery';
 import './Schema/documentation.css';
@@ -12,7 +12,7 @@ import { schemaSlice } from '../../redux/SchemaSlice';
 export const Documentation = () => {
   const { url } = useAppSelector((state) => state.graphReducer);
   const [startSchemaData, setStartSchemaData] =
-    useState<IIntrospectionquery | null>(null);
+    useState<IIntrospectionQuery | null>(null);
   const { setError } = graphSlice.actions;
   const { clearHistory } = schemaSlice.actions;
   const dispatch = useAppDispatch();
@@ -22,13 +22,13 @@ export const Documentation = () => {
     setStartSchemaData(null);
     setIsDocsOpen(false);
     dispatch(clearHistory());
-  }, [url]);
+  }, [url, clearHistory, dispatch]);
 
   const openDocs = async () => {
     let openSchema = !isDocsOpen;
     if (!startSchemaData) {
       const startQuery = IntrospectionQuery;
-      const { data, error } = await sendRequest<IIntrospectionquery>(
+      const { data, error } = await sendRequest<IIntrospectionQuery>(
         url,
         startQuery
       );

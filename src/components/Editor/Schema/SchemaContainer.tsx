@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   IFullType,
-  IIntrospectionquery,
+  IIntrospectionQuery,
   TypeClickHandler,
 } from './SchemaTypes';
 import { StartSchemaPage } from './StartSchemaPage';
@@ -10,8 +10,9 @@ import { schemaSlice } from '../../../redux/SchemaSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/reduxHooks';
 import { startSchemaPage } from '../../../utils/constants';
 import { SchemaNavigation } from './SchemaNavigation';
+import { SchemaSearchBar } from './SchemaSearchBar';
 
-export const SchemaContainer = ({ data }: { data: IIntrospectionquery }) => {
+export const SchemaContainer = ({ data }: { data: IIntrospectionQuery }) => {
   const findType = (selectedType: string) =>
     data.__schema.types.filter((type) => type.name === selectedType)[0];
 
@@ -24,13 +25,7 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionquery }) => {
 
   const { pushToHistory } = schemaSlice.actions;
   const dispatch = useAppDispatch();
-
-  const typeClickHandler: TypeClickHandler = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    addToHistory = true
-  ) => {
-    event.preventDefault();
-    const selectedType = event.currentTarget.text;
+  const getTypeInfo = (selectedType: string, addToHistory = true) => {
     const typeInfo = findType(selectedType);
     if (addToHistory) {
       dispatch(pushToHistory(selectedType));
@@ -39,8 +34,24 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionquery }) => {
     setCurrentPage(selectedType);
   };
 
+  const typeClickHandler: TypeClickHandler = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    addToHistory = true
+  ) => {
+    event.preventDefault();
+    const selectedType = event.currentTarget.text;
+    getTypeInfo(selectedType, addToHistory);
+    /*     const typeInfo = findType(selectedType);
+    if (addToHistory) {
+      dispatch(pushToHistory(selectedType));
+    }
+    setTypeInfo(typeInfo);
+    setCurrentPage(selectedType); */
+  };
+
   return (
     <div className="schema-container">
+      <SchemaSearchBar data={data} getTypeInfo={getTypeInfo} />
       <SchemaNavigation typeClickHandler={typeClickHandler} />
       <h2>{currentPage}</h2>
       {currentPage === startSchemaPage ? (
