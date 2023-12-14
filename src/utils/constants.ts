@@ -16,3 +16,5 @@ export enum ValidationErrorsCodes {
   passwordSpecialChar = 'passwordSpecialChar',
   passwordDigit = 'passwordDigit',
 }
+
+export const startSchemaPage = 'Docs';

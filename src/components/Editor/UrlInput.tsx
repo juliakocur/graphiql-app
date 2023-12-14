@@ -7,7 +7,7 @@ export const UrlInput = () => {
   const dispatch = useAppDispatch();
   const { url } = useAppSelector((state) => state.graphReducer);
 
-  const [urlValue, setUrlValue] = useState('');
+  const [urlValue, setUrlValue] = useState(url);
 
   const handlerChange = (event: ChangeEvent<HTMLInputElement>) => {
     setUrlValue(event.target.value);
