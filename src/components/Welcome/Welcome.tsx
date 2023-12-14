@@ -12,7 +12,7 @@ const Welcome = () => {
     <>
       <section className="welcome-container">
         <div className="welcome">
-          <h1 className="welcome-header">GraphiQL</h1>
+          <h1 className="welcome-header">GraphQL</h1>
           <p className="welcome-text">
             {Localization[language]['welcome-text1']}
           </p>

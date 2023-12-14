@@ -13,7 +13,7 @@
 
 .welcome-cards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
@@ -50,4 +50,66 @@
 .developer img {
   border-radius: 100%;
   max-width: 70px;
+}
+
+@media (max-width: 1060px) {
+  .welcome-cards {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .card {
+    box-sizing: border-box;
+    height: auto;
+    width: inherit;
+  }
+
+  .card > .developers-list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .developers-list > .developer {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 580px) {
+  .welcome > h1 {
+    font-size: 28px;
+    margin: 20px;
+  }
+
+  .welcome > p {
+    font-size: 16px;
+  }
+  .welcome-cards {
+    padding: 16px 0;
+  }
+  .card {
+    padding: 20px;
+  }
+  .card-title {
+    font-size: 22px;
+  }
+  .card-text {
+    font-size: 16px;
+    margin: 8px;
+  }
+  .card > .developers-list {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .developers-list > .developer {
+    width: 240px;
+    gap: 10px;
+    margin-bottom: 0;
+  }
+  .developer > img {
+    width: 60px;
+    height: 60px;
+  }
 }
