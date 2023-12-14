@@ -8,11 +8,13 @@ import { SchemaContainer } from './Schema/SchemaContainer';
 import { IntrospectionQuery } from './Schema/SchemaQuery';
 import './Schema/documentation.css';
 import { schemaSlice } from '../../redux/SchemaSlice';
+import { Loader } from '../Loader/Loader';
 
 export const Documentation = () => {
   const { url } = useAppSelector((state) => state.graphReducer);
   const [startSchemaData, setStartSchemaData] =
     useState<IIntrospectionQuery | null>(null);
+  const [isSchemaLoading, setIsSchemaLoading] = useState(false);
   const { setError } = graphSlice.actions;
   const { clearHistory } = schemaSlice.actions;
   const dispatch = useAppDispatch();
@@ -27,6 +29,7 @@ export const Documentation = () => {
   const openDocs = async () => {
     let openSchema = !isDocsOpen;
     if (!startSchemaData) {
+      setIsSchemaLoading(true);
       const startQuery = IntrospectionQuery;
       const { data, error } = await sendRequest<IIntrospectionQuery>(
         url,
@@ -40,6 +43,7 @@ export const Documentation = () => {
       if (error instanceof Error) {
         dispatch(setError(`Schema: ${error.message}`));
       }
+      setIsSchemaLoading(false);
     }
     setIsDocsOpen(openSchema);
   };
@@ -49,9 +53,16 @@ export const Documentation = () => {
       {startSchemaData && isDocsOpen && (
         <SchemaContainer data={startSchemaData} />
       )}
-      <button className="doc-button" onClick={openDocs}>
-        <img src={folder} alt="documentation" />
-      </button>
+      {isSchemaLoading && (
+        <div className="schema-loader">
+          <Loader />
+        </div>
+      )}
+      {!isSchemaLoading && (
+        <button className="doc-button" onClick={openDocs}>
+          <img src={folder} alt="documentation" />
+        </button>
+      )}
     </>
   );
 };
