@@ -5,11 +5,13 @@ import {
   AccordionDetails,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useState, ChangeEvent, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
+import CodeMirror from '@uiw/react-codemirror';
+import { graphql } from 'cm6-graphql';
 
 export const GraphVariables = () => {
   const { language } = useContext(LanguageContext);
@@ -18,10 +20,6 @@ export const GraphVariables = () => {
   const { variables } = useAppSelector((state) => state.graphReducer);
 
   const [variablesValue, setVariablesValue] = useState('');
-
-  const handlerChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setVariablesValue(event.target.value);
-  };
 
   const onBlurHandler = () => {
     if (variables !== variablesValue) {
@@ -41,10 +39,13 @@ export const GraphVariables = () => {
             <Typography>{Localization[language].variables}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <textarea
+            <CodeMirror
               className="variables-text"
               value={variablesValue}
-              onChange={handlerChange}
+              extensions={[graphql()]}
+              onChange={(value) => {
+                setVariablesValue(value);
+              }}
               onBlur={onBlurHandler}
             />
           </AccordionDetails>
