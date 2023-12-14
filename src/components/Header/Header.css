@@ -2,6 +2,7 @@ header {
   background-color: #010d18;
   display: flex;
   justify-content: center;
+  z-index: 99;
 }
 
 .header-container {
