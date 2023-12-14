@@ -27,7 +27,7 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionQuery }) => {
   const dispatch = useAppDispatch();
   const getTypeInfo = (selectedType: string, addToHistory = true) => {
     const typeInfo = findType(selectedType);
-    if (addToHistory) {
+    if (addToHistory && lastHistoryElement !== selectedType) {
       dispatch(pushToHistory(selectedType));
     }
     setTypeInfo(typeInfo);
@@ -45,9 +45,9 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionQuery }) => {
 
   return (
     <div className="schema-container">
-      <SchemaSearchBar data={data} getTypeInfo={getTypeInfo} />
       <SchemaNavigation typeClickHandler={typeClickHandler} />
-      <h2>{currentPage}</h2>
+      <SchemaSearchBar data={data} getTypeInfo={getTypeInfo} />
+      <h2 className="schema-page-title">{currentPage}</h2>
       {currentPage === startSchemaPage ? (
         <StartSchemaPage data={data} typeClickHandler={typeClickHandler} />
       ) : (

@@ -1,10 +1,17 @@
 .documentation {
   display: flex;
 }
+.MuiDrawer-paper {
+  background-color: rgb(238, 242, 246) !important;
+}
 .schema-container {
   width: 300px;
-  height: 100%;
-  background-color: antiquewhite;
+  height: fit-content;
+  background-color: rgb(238, 242, 246);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .schema-page {
   display: flex;
@@ -14,4 +21,61 @@
 
 .argument {
   display: inline;
+}
+
+.schema-nav {
+  height: 25px;
+}
+
+.schema-nav-link {
+  display: inline-block;
+  width: 100%;
+  color: #213547;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.schema-nav {
+  width: 100%;
+  cursor: pointer;
+}
+
+.schema-nav:hover,
+.schema-nav-link:hover {
+  color: cadetblue;
+  text-decoration: underline;
+}
+
+.schema-nav-link::before {
+  content: '< ';
+}
+
+.schema-page-title {
+  font-size: 32px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+.schema-subtitle {
+  font-size: 18px;
+  color: #213547;
+}
+
+.schema-subtitle::before {
+  content: '⚙ ';
+}
+
+.field-name {
+  color: rgb(76, 69, 215);
+}
+
+.arg-name {
+  color: rgb(198, 28, 28);
+}
+
+.arg-type {
+  color: rgb(216, 125, 40);
 }

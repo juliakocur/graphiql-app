@@ -1,17 +1,17 @@
-import { IIntrospectionquery, TypeClickHandler } from './SchemaTypes';
+import { IIntrospectionQuery, TypeClickHandler } from './SchemaTypes';
 
 export const StartSchemaPage = ({
   data,
   typeClickHandler,
 }: {
-  data: IIntrospectionquery;
+  data: IIntrospectionQuery;
   typeClickHandler: TypeClickHandler;
 }) => {
   return (
     <div className="shema-page">
       <p>A GraphQL schema provides a root type for each kind of operation.</p>
       <section>
-        <h3>Root Types</h3>
+        <h3 className="schema-subtitle">Root Types</h3>
         <p>
           query:{' '}
           <a href={data.__schema.queryType.name} onClick={typeClickHandler}>
@@ -20,7 +20,7 @@ export const StartSchemaPage = ({
         </p>
       </section>
       <section>
-        <h3>All Schema Types</h3>
+        <h3 className="schema-subtitle">All Schema Types</h3>
         <ul>
           {data.__schema.types.map(({ name }) => {
             if (!name.startsWith('__')) {

@@ -13,16 +13,21 @@ export const SchemaNavigation = ({
   const lastHistoryElement = history.at(-2);
 
   return (
-    <div>
-      <a
-        href={lastHistoryElement}
-        onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-          typeClickHandler(event, false);
-          dispatch(removeFromHistory());
-        }}
-      >
-        {lastHistoryElement}
-      </a>
+    <div className="schema-nav">
+      {lastHistoryElement && (
+        <>
+          <a
+            className="schema-nav-link"
+            href={lastHistoryElement}
+            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+              typeClickHandler(event, false);
+              dispatch(removeFromHistory());
+            }}
+          >
+            {lastHistoryElement}
+          </a>
+        </>
+      )}
     </div>
   );
 };

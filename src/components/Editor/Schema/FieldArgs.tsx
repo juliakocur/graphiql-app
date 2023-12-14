@@ -16,7 +16,7 @@ export const FieldArgs = ({
           {args.map(({ name, type }) => {
             return (
               <div key={name}>
-                <span>{`${name} : `}</span>
+                <span className="arg-name">{`${name} : `}</span>
                 <ArgumentType type={type} typeClickHandler={typeClickHandler} />
                 {args.length > 1 && <span>{', '}</span>}
               </div>

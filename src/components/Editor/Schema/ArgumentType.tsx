@@ -43,7 +43,7 @@ export const ArgumentType = ({
     <>
       <p className="argument">
         <span>{beforeSpan}</span>
-        <a href={name} onClick={typeClickHandler}>
+        <a href={name} onClick={typeClickHandler} className="arg-type">
           {name}
         </a>
         <span>{afterSpan}</span>

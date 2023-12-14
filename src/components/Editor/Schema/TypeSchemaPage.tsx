@@ -17,12 +17,12 @@ export const TypeSchemaPage = ({
           {data.description && <p>{data.description}</p>}
           {fields.length > 0 && (
             <>
-              <h3>Fields</h3>
+              <h3 className="schema-subtitle">Fields</h3>
               <ul>
                 {fields.map((field) => {
                   return (
                     <li key={field.name}>
-                      <span>{field.name}</span>
+                      <span className="field-name">{field.name}</span>
                       <FieldArgs
                         args={field?.args || []}
                         typeClickHandler={typeClickHandler}
@@ -43,12 +43,12 @@ export const TypeSchemaPage = ({
 
           {data.enumValues && data.enumValues.length > 0 && (
             <>
-              <h3>Enum values</h3>
+              <h3 className="schema-subtitle">Enum values</h3>
               <ul>
                 {data.enumValues.map((enumValue) => {
                   return (
                     <li key={enumValue.name}>
-                      <span>{enumValue.name}</span>
+                      <span className="field-name">{enumValue.name}</span>
                       <p>{enumValue.description}</p>
                     </li>
                   );
