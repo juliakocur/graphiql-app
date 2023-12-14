@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './Header.css';
 import HeaderNav from './HeaderNav/HeaderNav';
-import logo from '/logo.png';
+import logo from '/logo.svg';
 import { NavLink } from 'react-router-dom';
 
 const Header = () => {
-  const [isSticky, setIsSticky] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
 
   const scrollHandler = () => {
-    setIsSticky(window.scrollY > 0);
+    setIsScroll(window.scrollY > 30);
   };
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler);
@@ -18,14 +18,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header className={`header${isSticky ? ' sticky' : ''}`}>
+    <header className={`header${isScroll ? ' sticky' : ''}`}>
       <div className="header-container">
         <NavLink to="/">
           <div className="logo">
-            <div className="hexagon">
-              <img src={logo} alt="logo" />
-            </div>
-            GraphiQL
+            <img src={logo} alt="logo" />
           </div>
         </NavLink>
         <HeaderNav />
