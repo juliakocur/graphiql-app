@@ -104,3 +104,18 @@
   background: #32516c;
   border-radius: 10px;
 }
+
+.schema-head {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.close-btn.css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+  min-width: 30px;
+  background-color: #35536e;
+}
+
+.doc-button {
+  outline: none;
+}

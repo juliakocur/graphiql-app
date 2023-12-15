@@ -58,14 +58,18 @@ export const Documentation = () => {
       ) {
         return;
       }
-      setIsDocsOpen(false);
+      closeSchema();
     };
+
+  const closeSchema = () => {
+    setIsDocsOpen(false);
+  };
 
   return (
     <>
       {startSchemaData && isDocsOpen && (
         <Drawer anchor={'left'} open={isDocsOpen} onClose={toggleDrawer()}>
-          <SchemaContainer data={startSchemaData} />
+          <SchemaContainer data={startSchemaData} closeSchema={closeSchema} />
         </Drawer>
       )}
       {isSchemaLoading && (
