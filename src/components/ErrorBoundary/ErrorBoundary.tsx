@@ -34,29 +34,18 @@ class ErrorBoundary extends React.Component<IProps, IState> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="error-boundary">
-          <h3>
-            <LanguageContext.Consumer>
-              {() => {
-                const language =
-                  localStorage.getItem('language') === 'ru' ? 'ru' : 'en';
-                // тут через LS работает как надо
-                return <span>{Localization[language].boundary}</span>;
-              }}
-            </LanguageContext.Consumer>
-          </h3>
-          <LanguageContext.Consumer>
-            {(value) => {
-              console.log(value.language);
-              // тут смена языка происходит только после перезагрузки страницы
-              return (
-                <Button variant="contained" size="small" onClick={this.reload}>
-                  {Localization[value.language].reload}
-                </Button>
-              );
-            }}
-          </LanguageContext.Consumer>
-        </div>
+        <LanguageContext.Consumer>
+          {(value) => (
+            <div className="error-boundary">
+              <h3>
+                <span>{Localization[value.language].boundary}</span>;
+              </h3>
+              <Button variant="contained" size="small" onClick={this.reload}>
+                {Localization[value.language].reload}
+              </Button>
+            </div>
+          )}
+        </LanguageContext.Consumer>
       );
     }
     return this.props.children;
