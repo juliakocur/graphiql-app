@@ -35,13 +35,13 @@ class ErrorBoundary extends React.Component<IProps, IState> {
     if (this.state.hasError) {
       return (
         <LanguageContext.Consumer>
-          {(value) => (
+          {({ language }) => (
             <div className="error-boundary">
               <h3>
-                <span>{Localization[value.language].boundary}</span>;
+                <span>{Localization[language].boundary}</span>
               </h3>
               <Button variant="contained" size="small" onClick={this.reload}>
-                {Localization[value.language].reload}
+                {Localization[language].reload}
               </Button>
             </div>
           )}
