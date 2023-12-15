@@ -5,12 +5,14 @@ import jul from '/jul.jpg';
 import { useContext } from 'react';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
+import ErrorButton from '../ErrorBoundary/ErrorButton';
 
 const Welcome = () => {
   const { language } = useContext(LanguageContext);
   return (
     <>
       <section className="welcome-container">
+        <ErrorButton />
         <div className="welcome">
           <h1 className="welcome-header">GraphQL</h1>
           <p className="welcome-text">
