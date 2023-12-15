@@ -53,6 +53,8 @@ export const Localization = {
     newHeader: '+ Add new Header',
     variables: 'Variables',
     del: 'DEL',
+    reload: 'Reload',
+    boundary: 'Oops.. Something went wrong.',
   },
   ru: {
     editor: 'Редактор',
@@ -107,5 +109,7 @@ export const Localization = {
     newHeader: '+ Добавить Заголовок',
     variables: 'Переменные',
     del: 'Удалить',
+    reload: 'Обновить',
+    boundary: 'Уупс.. Что-то пошло не так.',
   },
 };

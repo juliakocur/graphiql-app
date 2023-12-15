@@ -1,0 +1,4 @@
+.error-boundary {
+  margin-block-start: 50vh;
+  transform: translateY(-50%);
+}
