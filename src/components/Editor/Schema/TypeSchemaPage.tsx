@@ -13,10 +13,10 @@ export const TypeSchemaPage = ({
   return (
     <>
       {data && (
-        <div>
+        <div className="schema-page">
           {data.description && <p>{data.description}</p>}
           {fields.length > 0 && (
-            <>
+            <section>
               <h3 className="schema-subtitle">Fields</h3>
               <ul>
                 {fields.map((field) => {
@@ -38,7 +38,7 @@ export const TypeSchemaPage = ({
                   );
                 })}
               </ul>
-            </>
+            </section>
           )}
 
           {data.enumValues && data.enumValues.length > 0 && (

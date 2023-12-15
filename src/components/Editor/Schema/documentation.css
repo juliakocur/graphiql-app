@@ -6,13 +6,14 @@
 }
 .schema-container {
   width: 300px;
-  height: fit-content;
+  min-height: calc(100% - 20px);
   background-color: #eef2f6;
-  padding: 5px;
+  padding: 10px 7.5px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+
 .schema-page {
   display: flex;
   flex-direction: column;
@@ -33,6 +34,7 @@
   color: #213547;
   font-weight: 400;
   font-size: 16px;
+  text-align: start;
 }
 
 .schema-nav {
@@ -86,21 +88,17 @@
   height: 40px;
 }
 
-.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
-  width: 320px;
+.schema::-webkit-scrollbar {
+  width: 5px;
 }
 
-.css-4t3x6l-MuiPaper-root-MuiDrawer-paper::-webkit-scrollbar {
-  width: 7px;
-}
-
-.css-4t3x6l-MuiPaper-root-MuiDrawer-paper::-webkit-scrollbar-track {
+.schema::-webkit-scrollbar-track {
   -webkit-box-shadow: 5px 5px 5px -5px #223c5033 inset;
   background-color: #f7f7fc;
   border-radius: 10px;
 }
 
-.css-4t3x6l-MuiPaper-root-MuiDrawer-paper::-webkit-scrollbar-thumb {
+.schema::-webkit-scrollbar-thumb {
   background: #32516c;
   border-radius: 10px;
 }
@@ -111,11 +109,36 @@
   align-items: center;
 }
 
-.close-btn.css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+.schema .close-btn {
   min-width: 30px;
   background-color: #35536e;
 }
 
 .doc-button {
   outline: none;
+}
+.schema {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100vh;
+  overflow-y: auto;
+  width: 320px;
+  transition: 0.3s;
+  transform: translateX(-320px);
+}
+
+.schema.open {
+  transform: translateX(0);
+}
+
+.schema-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.schema-page * {
+  width: 100%;
+  text-align: start;
 }
