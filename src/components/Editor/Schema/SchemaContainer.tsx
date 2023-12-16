@@ -11,8 +11,15 @@ import { useAppDispatch, useAppSelector } from '../../../redux/reduxHooks';
 import { startSchemaPage } from '../../../utils/constants';
 import { SchemaNavigation } from './SchemaNavigation';
 import { SchemaSearchBar } from './SchemaSearchBar';
+import { Button } from '@mui/material';
 
-export const SchemaContainer = ({ data }: { data: IIntrospectionQuery }) => {
+export const SchemaContainer = ({
+  data,
+  closeSchema,
+}: {
+  data: IIntrospectionQuery;
+  closeSchema: () => void;
+}) => {
   const findType = (selectedType: string) =>
     data.__schema.types.filter((type) => type.name === selectedType)[0];
 
@@ -45,7 +52,17 @@ export const SchemaContainer = ({ data }: { data: IIntrospectionQuery }) => {
 
   return (
     <div className="schema-container">
-      <SchemaNavigation typeClickHandler={typeClickHandler} />
+      <div className="schema-head">
+        <SchemaNavigation typeClickHandler={typeClickHandler} />
+        <Button
+          variant="contained"
+          size="small"
+          className="close-btn"
+          onClick={closeSchema}
+        >
+          ✖
+        </Button>
+      </div>
       <SchemaSearchBar data={data} getTypeInfo={getTypeInfo} />
       <h2 className="schema-page-title">{currentPage}</h2>
       {currentPage === startSchemaPage ? (

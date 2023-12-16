@@ -2,17 +2,18 @@
   display: flex;
 }
 .MuiDrawer-paper {
-  background-color: rgb(238, 242, 246) !important;
+  background-color: #eef2f6 !important;
 }
 .schema-container {
   width: 300px;
-  height: fit-content;
-  background-color: rgb(238, 242, 246);
-  padding: 10px;
+  min-height: calc(100% - 20px);
+  background-color: #eef2f6;
+  padding: 10px 7.5px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+
 .schema-page {
   display: flex;
   flex-direction: column;
@@ -33,6 +34,7 @@
   color: #213547;
   font-weight: 400;
   font-size: 16px;
+  text-align: start;
 }
 
 .schema-nav {
@@ -69,19 +71,110 @@
 }
 
 .field-name {
-  color: rgb(76, 69, 215);
+  color: #4c45d7;
 }
 
 .arg-name {
-  color: rgb(198, 28, 28);
+  color: #c61c1c;
 }
 
 .arg-type {
-  color: rgb(216, 125, 40);
+  color: #d87d28;
 }
 
 .schema-loader {
   position: relative;
   top: 127px;
   height: 40px;
+}
+
+.schema::-webkit-scrollbar {
+  width: 5px;
+}
+
+.schema::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px #223c5033 inset;
+  background-color: #f7f7fc;
+  border-radius: 10px;
+}
+
+.schema::-webkit-scrollbar-thumb {
+  background: #32516c;
+  border-radius: 10px;
+}
+
+.schema-head {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.schema .close-btn {
+  min-width: 30px;
+  background-color: #35536e;
+}
+
+.doc-button {
+  outline: none;
+}
+.schema {
+  height: 650px;
+  overflow-y: auto;
+  width: 0;
+  transition: 0.3s;
+  transform: translateX(-320px);
+}
+
+.schema.open {
+  transform: translateX(0);
+  width: 320px;
+  position: sticky;
+  height: 100vh;
+  top: 0;
+}
+
+.schema-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.schema-page * {
+  width: 100%;
+  text-align: start;
+}
+
+.graph {
+  max-width: 100%;
+  justify-content: center;
+}
+
+.graph-section {
+  max-width: calc(100% - 40px);
+}
+
+@media (max-width: 690px) {
+  .graph {
+    flex-direction: column;
+  }
+  .schema {
+    height: 0;
+  }
+  .schema.open,
+  .schema-container {
+    width: calc(100% - 15px);
+    height: 300px;
+  }
+  .schema.open {
+    width: 100%;
+  }
+  .schema-container {
+    height: auto;
+  }
+  .documentation {
+    flex-direction: column;
+  }
+  .doc-button,
+  .schema-loader {
+    top: 0;
+  }
 }

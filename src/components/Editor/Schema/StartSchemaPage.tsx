@@ -8,7 +8,7 @@ export const StartSchemaPage = ({
   typeClickHandler: TypeClickHandler;
 }) => {
   return (
-    <div className="shema-page">
+    <div className="schema-page">
       <p>A GraphQL schema provides a root type for each kind of operation.</p>
       <section>
         <h3 className="schema-subtitle">Root Types</h3>
