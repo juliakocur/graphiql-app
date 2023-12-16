@@ -118,19 +118,19 @@
   outline: none;
 }
 .schema {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  height: 100vh;
+  height: 650px;
   overflow-y: auto;
-  width: 320px;
+  width: 0;
   transition: 0.3s;
   transform: translateX(-320px);
 }
 
 .schema.open {
   transform: translateX(0);
+  width: 320px;
+  position: sticky;
+  height: 100vh;
+  top: 0;
 }
 
 .schema-page {
@@ -141,4 +141,40 @@
 .schema-page * {
   width: 100%;
   text-align: start;
+}
+
+.graph {
+  max-width: 100%;
+  justify-content: center;
+}
+
+.graph-section {
+  max-width: calc(100% - 40px);
+}
+
+@media (max-width: 690px) {
+  .graph {
+    flex-direction: column;
+  }
+  .schema {
+    height: 0;
+  }
+  .schema.open,
+  .schema-container {
+    width: calc(100% - 15px);
+    height: 300px;
+  }
+  .schema.open {
+    width: 100%;
+  }
+  .schema-container {
+    height: auto;
+  }
+  .documentation {
+    flex-direction: column;
+  }
+  .doc-button,
+  .schema-loader {
+    top: 0;
+  }
 }
