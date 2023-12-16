@@ -24,6 +24,7 @@ export const UrlInput = () => {
       value={urlValue}
       onChange={handlerChange}
       onBlur={onBlurHandler}
+      data-testid="input-http"
     ></input>
   );
 };

@@ -6,6 +6,12 @@ import { store } from '../redux/store';
 import LanguageContextProvider from '../localization/LangContextProvider';
 import { AppRouter } from '../routes/AppRouter';
 import { AllRoutes } from '../routes/allRoutes';
+import { authSlice } from '../redux/AuthSlice';
+
+vi.mock('@uiw/react-codemirror', () => ({
+  __esModule: true,
+  default: () => <div>Mocked CodeMirror</div>,
+}));
 
 describe('Test all routes', () => {
   it('WelcomePage renders correctly', () => {
@@ -66,5 +72,21 @@ describe('Test all routes', () => {
 
     const notPageFoundTitle = screen.getByText(/404 Not Found/i);
     expect(notPageFoundTitle).toBeInTheDocument();
+  });
+
+  it('EditorPage renders correctly', () => {
+    const { setIsTokenValid } = authSlice.actions;
+    store.dispatch(setIsTokenValid(true));
+    render(
+      <Provider store={store}>
+        <LanguageContextProvider>
+          <MemoryRouter initialEntries={[`/${AllRoutes.editor.path}`]}>
+            <AppRouter />
+          </MemoryRouter>
+        </LanguageContextProvider>
+      </Provider>
+    );
+    const inputElement = screen.getByTestId('input-http');
+    expect(inputElement).toBeInTheDocument();
   });
 });
