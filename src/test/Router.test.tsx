@@ -103,4 +103,43 @@ describe('Test all routes', () => {
     const notPageFoundTitle = screen.getByText(/404 Not Found/i);
     expect(notPageFoundTitle).toBeInTheDocument();
   });
+  it('redirects to Editor when auth user', () => {
+    const { setIsTokenValid } = authSlice.actions;
+    store.dispatch(setIsTokenValid(true));
+    render(
+      <Provider store={store}>
+        <LanguageContextProvider>
+          <MemoryRouter initialEntries={[`/${AllRoutes.login.path}`]}>
+            <AppRouter />
+          </MemoryRouter>
+        </LanguageContextProvider>
+      </Provider>
+    );
+
+    const inputElement = screen.getByTestId('input-http');
+    const loginTitle = screen.queryByText(/Sign In/i);
+
+    expect(loginTitle).not.toBeInTheDocument();
+    expect(inputElement).toBeInTheDocument();
+  });
+  it('redirects to Welcome when not auth user', () => {
+    const { setIsTokenValid } = authSlice.actions;
+    store.dispatch(setIsTokenValid(false));
+    render(
+      <Provider store={store}>
+        <LanguageContextProvider>
+          <MemoryRouter initialEntries={[`/${AllRoutes.editor.path}`]}>
+            <AppRouter />
+          </MemoryRouter>
+        </LanguageContextProvider>
+      </Provider>
+    );
+
+    const inputElement = screen.queryByTestId('input-http');
+    const welcomePageElement = screen.getByText('GraphQL', {
+      selector: 'h1.welcome-header',
+    });
+    expect(welcomePageElement).toBeInTheDocument();
+    expect(inputElement).not.toBeInTheDocument();
+  });
 });
