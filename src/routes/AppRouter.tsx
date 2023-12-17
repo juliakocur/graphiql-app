@@ -29,7 +29,7 @@ export const ProtectedAuthRoute = ({ children }: IPropsProtectedRoute) => {
   return isTokenValid ? children : <AppRedirect />;
 };
 
-const ProtectedNotAuthRoute = ({ children }: IPropsProtectedRoute) => {
+export const ProtectedNotAuthRoute = ({ children }: IPropsProtectedRoute) => {
   const { isTokenValid } = useAppSelector((state) => state.authReducer);
 
   return !isTokenValid ? (
