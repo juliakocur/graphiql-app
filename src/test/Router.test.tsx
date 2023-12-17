@@ -89,4 +89,18 @@ describe('Test all routes', () => {
     const inputElement = screen.getByTestId('input-http');
     expect(inputElement).toBeInTheDocument();
   });
+  it('redirects to Not page when navigating to an invalid route', () => {
+    render(
+      <Provider store={store}>
+        <LanguageContextProvider>
+          <MemoryRouter initialEntries={['/invalid-route']}>
+            <AppRouter />
+          </MemoryRouter>
+        </LanguageContextProvider>
+      </Provider>
+    );
+
+    const notPageFoundTitle = screen.getByText(/404 Not Found/i);
+    expect(notPageFoundTitle).toBeInTheDocument();
+  });
 });
