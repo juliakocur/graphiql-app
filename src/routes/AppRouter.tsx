@@ -23,13 +23,13 @@ interface IPropsProtectedRoute {
   children: JSX.Element;
 }
 
-const ProtectedAuthRoute = ({ children }: IPropsProtectedRoute) => {
+export const ProtectedAuthRoute = ({ children }: IPropsProtectedRoute) => {
   const { isTokenValid } = useAppSelector((state) => state.authReducer);
 
   return isTokenValid ? children : <AppRedirect />;
 };
 
-const ProtectedNotAuthRoute = ({ children }: IPropsProtectedRoute) => {
+export const ProtectedNotAuthRoute = ({ children }: IPropsProtectedRoute) => {
   const { isTokenValid } = useAppSelector((state) => state.authReducer);
 
   return !isTokenValid ? (
