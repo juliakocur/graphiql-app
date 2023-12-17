@@ -55,7 +55,10 @@ export const Documentation = () => {
   return (
     <>
       {startSchemaData && (
-        <div className={`schema ${isDocsOpen ? 'open' : ''}`}>
+        <div
+          className={`schema ${isDocsOpen ? 'open' : ''}`}
+          data-testid="schema"
+        >
           <SchemaContainer data={startSchemaData} closeSchema={closeSchema} />
         </div>
       )}

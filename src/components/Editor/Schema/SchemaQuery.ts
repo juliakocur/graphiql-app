@@ -1,6 +1,5 @@
 export const IntrospectionQuery = `query IntrospectionQuery {
   __schema {
-
     queryType { name }
     mutationType { name }
     subscriptionType { name }
@@ -10,7 +9,6 @@ export const IntrospectionQuery = `query IntrospectionQuery {
     directives {
       name
       description
-      
       locations
       args {
         ...InputValue
@@ -23,7 +21,6 @@ fragment FullType on __Type {
   kind
   name
   description
-  
   fields(includeDeprecated: true) {
     name
     description
@@ -58,9 +55,7 @@ fragment InputValue on __InputValue {
   description
   type { ...TypeRef }
   defaultValue
-  
-  
-}
+  }
 
 fragment TypeRef on __Type {
   kind
