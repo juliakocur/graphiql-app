@@ -55,7 +55,9 @@ export const Localization = {
     del: 'DEL',
     reload: 'Reload',
     boundary: 'Oops.. Something went wrong.',
+    'page-not-found': 'Page not Found',
   },
+
   ru: {
     editor: 'Редактор',
     registration: 'Регистрация',
@@ -111,5 +113,6 @@ export const Localization = {
     del: 'Удалить',
     reload: 'Обновить',
     boundary: 'Уупс.. Что-то пошло не так.',
+    'page-not-found': 'Страница не найдена',
   },
 };

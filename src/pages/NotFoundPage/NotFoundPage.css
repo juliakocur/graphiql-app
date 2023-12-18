@@ -1,0 +1,12 @@
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.title-page-not-found {
+  font-size: 50px;
+  font-weight: 800;
+  text-transform: uppercase;
+}

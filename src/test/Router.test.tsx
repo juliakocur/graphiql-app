@@ -70,7 +70,7 @@ describe('Test all routes', () => {
       </Provider>
     );
 
-    const notPageFoundTitle = screen.getByText(/404 Not Found/i);
+    const notPageFoundTitle = screen.getByText(/Page not Found/i);
     expect(notPageFoundTitle).toBeInTheDocument();
   });
 
@@ -100,7 +100,7 @@ describe('Test all routes', () => {
       </Provider>
     );
 
-    const notPageFoundTitle = screen.getByText(/404 Not Found/i);
+    const notPageFoundTitle = screen.getByText(/Page not Found/i);
     expect(notPageFoundTitle).toBeInTheDocument();
   });
   it('redirects to Editor when auth user', () => {

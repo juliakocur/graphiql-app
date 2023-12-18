@@ -1,5 +1,16 @@
+import { useContext } from 'react';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
+import './NotFoundPage.css';
 const NotFoundPage = () => {
-  return <div>404 Not Found</div>;
+  const { language } = useContext(LanguageContext);
+  return (
+    <div className="page-not-found">
+      <p className="title-page-not-found">
+        {Localization[language]['page-not-found']}
+      </p>
+    </div>
+  );
 };
 
 export default NotFoundPage;
