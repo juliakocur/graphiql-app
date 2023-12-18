@@ -40,7 +40,12 @@ class ErrorBoundary extends React.Component<IProps, IState> {
               <h3>
                 <span>{Localization[language].boundary}</span>
               </h3>
-              <Button variant="contained" size="small" onClick={this.reload}>
+              <Button
+                variant="contained"
+                size="small"
+                data-testid="reload"
+                onClick={this.reload}
+              >
                 {Localization[language].reload}
               </Button>
             </div>
