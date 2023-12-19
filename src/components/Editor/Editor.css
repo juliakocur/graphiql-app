@@ -167,3 +167,10 @@
   max-height: 180px;
   margin: 0;
 }
+
+.editor-mode-switcher {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  height: fit-content;
+}

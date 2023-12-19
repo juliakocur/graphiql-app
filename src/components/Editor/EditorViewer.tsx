@@ -1,4 +1,4 @@
-import { Button, FormControlLabel, Switch } from '@mui/material';
+import { Button, Switch } from '@mui/material';
 import { ResponseRequest } from './ResponseRequest';
 import { useContext, useState } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
@@ -50,11 +50,10 @@ export const EditorViewer = () => {
           ►
         </Button>
       </div>
-
-      <FormControlLabel
-        control={<Switch defaultChecked onChange={switchMode} />}
-        label={Localization[language][mode]}
-      />
+      <div className="editor-mode-switcher">
+        <Switch defaultChecked onChange={switchMode} />
+        <p>{Localization[language][mode]}</p>
+      </div>
 
       <React.Suspense
         fallback={
