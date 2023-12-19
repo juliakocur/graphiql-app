@@ -79,8 +79,6 @@
 
 .submit-button {
   height: 30px;
-  position: relative;
-  top: 20px;
   font-size: 24px;
 }
 
@@ -156,4 +154,16 @@
   .variables {
     width: 100%;
   }
+}
+
+.response-request {
+  width: 100%;
+}
+
+.response-request.loader {
+  width: 100%;
+  min-height: 180px;
+  height: auto;
+  max-height: 180px;
+  margin: 0;
 }

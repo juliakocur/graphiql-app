@@ -8,3 +8,8 @@ export interface IRequestParams {
 export interface IResponseResultData {
   data: unknown;
 }
+
+export enum Mode {
+  response = 'response',
+  request = 'request',
+}

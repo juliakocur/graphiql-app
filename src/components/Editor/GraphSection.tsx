@@ -1,7 +1,7 @@
+import { EditorViewer } from './EditorViewer';
 import { GraphHeaders } from './GraphHeaders';
 import { GraphVariables } from './GraphVariables';
 import { UrlInput } from './UrlInput';
-import EditorViewer from './EditorViewer';
 
 export const GraphSection = () => {
   return (

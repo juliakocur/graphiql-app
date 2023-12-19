@@ -47,7 +47,9 @@ export const GraphHeaders = () => {
   const updateHeadersInStore = (data: Idata[]) => {
     const headersValue = data.reduce(
       (acc: Record<string, string>, cur: Idata) => {
-        acc[cur.key] = cur.value;
+        if (cur.key) {
+          acc[cur.key] = cur.value;
+        }
         return acc;
       },
       {}
