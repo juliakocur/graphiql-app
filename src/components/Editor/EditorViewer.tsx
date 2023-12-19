@@ -1,63 +1,69 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+import { Button, Switch } from '@mui/material';
+import { ResponseRequest } from './ResponseRequest';
+import { useContext, useState } from 'react';
+import { graphSlice } from '../../redux/GraphQLSlice';
+import { useAppSelector, useAppDispatch } from '../../redux/reduxHooks';
+import { IRequestParams, Mode } from '../../types/types';
+import React from 'react';
+import { Loader } from '../Loader/Loader';
 import { Localization } from '../../localization/Localization';
 import { LanguageContext } from '../../localization/LangContextProvider';
-import { EditorTabs } from './EditorTabs';
-import { Loader } from '../Loader/Loader';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-export function CustomTabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-    </div>
+export const EditorViewer = () => {
+  const { language } = useContext(LanguageContext);
+  const [mode, changeMode] = useState<Mode>(Mode.request);
+  const { url, query, variables, headers } = useAppSelector(
+    (state) => state.graphReducer
   );
-}
 
-function a11yProps(index: number) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+  const { setError } = graphSlice.actions;
+  const dispatch = useAppDispatch();
+
+  const [params, setParams] = useState<IRequestParams | null>(null);
+
+  const clickHandler = () => {
+    try {
+      const parsedVariables = variables ? JSON.parse(variables) : {};
+
+      setParams({ url, query, variables: parsedVariables, headers });
+      dispatch(setError(null));
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        dispatch(setError('vars-json'));
+      }
+    }
   };
-}
 
-export default function EditorViewer() {
-  const [value, setValue] = React.useState(0);
-  const { language } = React.useContext(LanguageContext);
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
+  const switchMode = () => {
+    changeMode(mode === Mode.request ? Mode.response : Mode.request);
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
+    <section className="response-request">
+      <div className="submit-button">
+        <Button
+          variant="contained"
+          size="small"
+          type="submit"
+          onClick={clickHandler}
         >
-          <Tab label={Localization[language].request} {...a11yProps(0)} />
-          <Tab label={Localization[language].response} {...a11yProps(1)} />
-        </Tabs>
-      </Box>
-      <React.Suspense fallback={<Loader />}>
-        <EditorTabs value={value} />
+          ►
+        </Button>
+      </div>
+      <div className="editor-mode-switcher">
+        <Switch defaultChecked onChange={switchMode} />
+        <p>{Localization[language][mode]}</p>
+      </div>
+
+      <React.Suspense
+        fallback={
+          <div className="response-request loader">
+            <Loader />
+          </div>
+        }
+      >
+        <ResponseRequest mode={mode} params={params}></ResponseRequest>
       </React.Suspense>
-    </Box>
+    </section>
   );
-}
+};
