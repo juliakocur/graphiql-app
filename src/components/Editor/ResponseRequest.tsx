@@ -64,7 +64,7 @@ export const ResponseRequest = ({
 
   return (
     <div>
-      {mode === 'request' && (
+      {mode === Mode.request && (
         <div className="prettify-button">
           <Button variant="contained" size="small" onClick={prettify}>
             {Localization[language].prettify}

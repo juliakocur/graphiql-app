@@ -36,7 +36,7 @@ export const EditorViewer = () => {
   };
 
   return (
-    <div className="response-request">
+    <section className="response-request">
       <div className="submit-button">
         <Button
           variant="contained"
@@ -61,6 +61,6 @@ export const EditorViewer = () => {
       >
         <ResponseRequest mode={mode} params={params}></ResponseRequest>
       </React.Suspense>
-    </div>
+    </section>
   );
 };
