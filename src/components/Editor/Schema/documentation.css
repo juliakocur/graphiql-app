@@ -115,6 +115,12 @@
 }
 
 .doc-button {
+  position: relative;
+  top: 127px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: transparent;
   outline: none;
 }
 .schema {
@@ -141,11 +147,6 @@
 .schema-page * {
   width: 100%;
   text-align: start;
-}
-
-.graph {
-  max-width: 100%;
-  justify-content: center;
 }
 
 .graph-section {
