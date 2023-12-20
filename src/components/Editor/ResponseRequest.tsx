@@ -66,13 +66,19 @@ export const ResponseRequest = ({
     <div>
       {mode === Mode.request && (
         <div className="prettify-button">
-          <Button variant="contained" size="small" onClick={prettify}>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={prettify}
+            data-testid={'prettify-btn'}
+          >
             {Localization[language].prettify}
           </Button>
         </div>
       )}
       <CodeMirror
         className="request-area"
+        data-testid={'response-request-area'}
         value={
           mode === Mode.request
             ? requestQuery
