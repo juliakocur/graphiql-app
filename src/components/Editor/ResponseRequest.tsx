@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
-import { LanguageContext } from '../../localization/LangContextProvider';
+import { useEffect, useState } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { IRequestParams, IResponseResultData, Mode } from '../../types/types';
@@ -8,8 +7,8 @@ import CodeMirror from '@uiw/react-codemirror';
 import { graphql } from 'cm6-graphql';
 import { sendRequest } from '../../utils/graphqlRequests';
 import { Button } from '@mui/material';
-import { Localization } from '../../localization/Localization';
 import { prettifyRequestQuery } from '../../utils/prettify';
+import broom from '/broom.png';
 
 export const ResponseRequest = ({
   mode,
@@ -19,7 +18,6 @@ export const ResponseRequest = ({
   params: IRequestParams | null;
 }) => {
   const { query } = useAppSelector((state) => state.graphReducer);
-  const { language } = useContext(LanguageContext);
   const [requestQuery, setRequestQuery] = useState(query);
   const { setError, setQuery } = graphSlice.actions;
   const dispatch = useAppDispatch();
@@ -63,7 +61,7 @@ export const ResponseRequest = ({
   };
 
   return (
-    <div>
+    <div className="request-container">
       {mode === Mode.request && (
         <div className="prettify-button">
           <Button
@@ -72,7 +70,7 @@ export const ResponseRequest = ({
             onClick={prettify}
             data-testid={'prettify-btn'}
           >
-            {Localization[language].prettify}
+            <img src={broom} alt="broom" className="broom" />.
           </Button>
         </div>
       )}
