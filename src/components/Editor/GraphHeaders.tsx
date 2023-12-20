@@ -68,16 +68,22 @@ export const GraphHeaders = () => {
           <div className="header-item" key={index}>
             <input
               className="input-key"
+              data-testid={`input-key-${index}`}
               value={item.key}
               onChange={(e) => handleChangeKey(e, index)}
             ></input>
             :
             <input
               className="input-value"
+              data-testid={`input-value-${index}`}
               value={item.value}
               onChange={(e) => handleChangeValue(e, index)}
             ></input>
-            <div className="delete-button" onClick={() => handleDelete(index)}>
+            <div
+              className="delete-button"
+              onClick={() => handleDelete(index)}
+              data-testid={`delete-btn-${index}`}
+            >
               <Button variant="contained" size="small" type="submit">
                 <img src={trash} alt="delete" className="trash" />
               </Button>

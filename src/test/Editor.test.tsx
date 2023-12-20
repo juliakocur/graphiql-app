@@ -20,18 +20,30 @@ vi.mock('@uiw/react-codemirror', () => ({
     <textarea
       data-testid="mocked-code-mirror"
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+        onChange(e.target.value)
+      }
       readOnly={editable}
       {...rest}
     />
   ),
 }));
 
-const mockedFetch = vi.spyOn(window, 'fetch');
+const mockedFetch = vi
+  .spyOn(window, 'fetch')
+  .mockImplementationOnce(() => {
+    return Promise.resolve({
+      json: () => Promise.resolve({ data: 'test data' }),
+    } as Response);
+  })
+  .mockImplementationOnce(() => {
+    return Promise.resolve(
+      new Response(null, { status: 404, statusText: 'test error' })
+    );
+  });
 
 describe('Editor test', () => {
   userEvent.setup();
-  //  const errors = Localization['en'].form.formValidationErrors;
   const testUrl = 'test url';
   const testQuery =
     'query AllChar($name:String){characters(page:2,filter:{name:$name}){info{count}}}';
@@ -44,20 +56,6 @@ describe('Editor test', () => {
         </LanguageContextProvider>
       </Provider>
     );
-    await userEvent.type(screen.getByTestId('input-http'), testUrl);
-    // act(() => {
-    fireEvent.change(screen.getByTestId('response-request-area'), {
-      target: { value: testQuery },
-    });
-    fireEvent.blur(screen.getByTestId('response-request-area'));
-    //   });
-
-    /*     await userEvent.type(
-      screen.getByTestId('response-request-area'),
-      testQuery
-    ); */
-    //await userEvent.type(screen.getByTestId('variables-text'), '')
-    //await userEvent.type(screen.getByTestId('input-http'), testUrl)
   });
 
   it('should render editor correctly', () => {
@@ -68,15 +66,17 @@ describe('Editor test', () => {
     expect(screen.getByText(/add new header/i)).toBeInTheDocument();
   });
 
-  it('should add vars', async () => {
-    fireEvent.change(screen.getByTestId('response-request-area'), {
-      target: { value: testQuery },
-    });
-    /*  const varsWrapper = screen.getByText(/variables/i);
-    await userEvent.click(varsWrapper); */
-
+  it('should add variables', async () => {
+    mockedFetch.mockClear();
+    await userEvent.type(screen.getByTestId('input-http'), testUrl);
+    const requestResponseArea = screen.getByTestId('response-request-area');
     const varsArea = screen.getByTestId('variables-text');
     const newTestVariables = { name: 'value' };
+    fireEvent.change(requestResponseArea, {
+      target: { value: testQuery },
+    });
+    fireEvent.blur(requestResponseArea);
+
     fireEvent.change(varsArea, {
       target: { value: JSON.stringify(newTestVariables) },
     });
@@ -92,9 +92,39 @@ describe('Editor test', () => {
         variables: newTestVariables,
       }),
     });
-    // });
+    await userEvent.clear(varsArea);
+    fireEvent.blur(varsArea);
   });
-  it('should add headers', () => {
-    //  expect(1).toBe(1);
+
+  it('should add headers', async () => {
+    mockedFetch.mockClear();
+    const addNewHeaderBtn = screen.getByText(/add new header/i);
+    await userEvent.click(addNewHeaderBtn);
+    const testHeaderKey0 = 'testHeaderKey0';
+    const testHeaderValue0 = 'testHeaderValue0';
+
+    await userEvent.type(
+      screen.getByTestId<HTMLInputElement>('input-key-0'),
+      testHeaderKey0
+    );
+    await userEvent.type(
+      screen.getByTestId<HTMLInputElement>('input-value-0'),
+      testHeaderValue0
+    );
+    await userEvent.click(addNewHeaderBtn);
+    await userEvent.click(screen.getByTestId('delete-btn-1'));
+    await userEvent.click(screen.getByText(/►/i));
+
+    expect(mockedFetch).toBeCalledWith(testUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        testHeaderKey0: testHeaderValue0,
+      },
+      body: JSON.stringify({
+        query: testQuery,
+        variables: {},
+      }),
+    });
   });
 });
