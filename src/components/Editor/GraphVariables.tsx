@@ -40,6 +40,7 @@ export const GraphVariables = () => {
           </AccordionSummary>
           <AccordionDetails>
             <CodeMirror
+              data-testid="variables-text"
               className="variables-text"
               value={variablesValue}
               extensions={[graphql()]}
