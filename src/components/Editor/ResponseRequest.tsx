@@ -64,13 +64,19 @@ export const ResponseRequest = ({
     <div className="request-container">
       {mode === Mode.request && (
         <div className="prettify-button">
-          <Button variant="contained" size="small" onClick={prettify}>
+          <Button
+            variant="contained"
+            size="small"
+            onClick={prettify}
+            data-testid={'prettify-btn'}
+          >
             <img src={broom} alt="broom" className="broom" />.
           </Button>
         </div>
       )}
       <CodeMirror
         className="request-area"
+        data-testid={'response-request-area'}
         value={
           mode === Mode.request
             ? requestQuery
