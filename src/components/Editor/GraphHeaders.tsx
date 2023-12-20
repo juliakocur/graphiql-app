@@ -4,6 +4,7 @@ import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppDispatch } from '../../redux/reduxHooks';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
+import trash from '/trash.png';
 
 export const GraphHeaders = () => {
   interface Idata {
@@ -70,6 +71,7 @@ export const GraphHeaders = () => {
               value={item.key}
               onChange={(e) => handleChangeKey(e, index)}
             ></input>
+            :
             <input
               className="input-value"
               value={item.value}
@@ -77,7 +79,7 @@ export const GraphHeaders = () => {
             ></input>
             <div className="delete-button" onClick={() => handleDelete(index)}>
               <Button variant="contained" size="small" type="submit">
-                {Localization[language].del}
+                <img src={trash} alt="delete" className="trash" />
               </Button>
             </div>
           </div>
