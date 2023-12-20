@@ -18,7 +18,6 @@ vi.mock('@uiw/react-codemirror', () => ({
     editable?: boolean;
   }) => (
     <textarea
-      data-testid="mocked-code-mirror"
       value={value}
       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
         onChange(e.target.value)
