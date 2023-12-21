@@ -57,6 +57,9 @@ export const Localization = {
     boundary: 'Oops.. Something went wrong.',
     'page-not-found': 'Page not Found',
     schema: 'Schema',
+    url: 'enter URL',
+    key: 'key',
+    value: 'value',
   },
 
   ru: {
@@ -116,5 +119,8 @@ export const Localization = {
     boundary: 'Уупс.. Что-то пошло не так.',
     'page-not-found': 'Страница не найдена',
     schema: 'Схема',
+    url: 'введите URL',
+    key: 'ключ',
+    value: 'значение',
   },
 };

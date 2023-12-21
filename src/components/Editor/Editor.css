@@ -1,7 +1,7 @@
 .graph {
   display: flex;
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 100%;
   justify-content: center;
 }
 
@@ -34,6 +34,7 @@
 }
 
 .request-container {
+  max-width: 770px;
   position: relative;
   background-color: #282a36;
   max-width: 1000px;
@@ -157,9 +158,14 @@
   min-height: 25px;
 }
 
-@media (max-width: 865px) {
-  .graph-container,
+@media (max-width: 1200px) {
   .variables-headers {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 865px) {
+  .graph-container {
     flex-wrap: wrap;
   }
 
@@ -179,6 +185,10 @@
 @media (max-width: 690px) {
   .graph-section {
     max-width: 100%;
+  }
+
+  .variables-headers {
+    justify-content: center;
   }
 }
 
