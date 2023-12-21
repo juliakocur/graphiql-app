@@ -34,7 +34,7 @@
 }
 
 .request-container {
-  max-width: 770px;
+  max-width: 1000px;
   position: relative;
   background-color: #282a36;
   margin: 0 auto;
@@ -146,7 +146,7 @@
 }
 
 .add-button {
-  width: 150px;
+  width: 200px;
   padding: 10px;
 }
 
