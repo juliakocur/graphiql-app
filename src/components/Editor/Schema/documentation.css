@@ -147,7 +147,7 @@
   text-align: start;
 }
 
-@media (max-width: 690px) {
+@media (max-width: 860px) {
   .graph {
     flex-direction: column;
     padding: 0 10px;
@@ -162,6 +162,7 @@
   }
   .schema.open {
     width: 100%;
+    position: static;
   }
   .schema-container {
     height: auto;
@@ -179,5 +180,8 @@
     left: 40%;
     width: 100px;
     transform: rotate(0deg);
+  }
+  .graph-section {
+    width: unset;
   }
 }
