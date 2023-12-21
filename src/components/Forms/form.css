@@ -42,4 +42,7 @@ input[name='password'] {
   bottom: 25px;
   left: 50%;
   transform: translate(-50%, 0%);
+  width: 50%;
+  max-width: 1000px;
+  word-wrap: break-word;
 }
