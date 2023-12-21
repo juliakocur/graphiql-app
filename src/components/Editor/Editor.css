@@ -146,8 +146,7 @@
 }
 
 .add-button {
-  width: 200px;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .input-key,
@@ -165,6 +164,11 @@
 @media (max-width: 865px) {
   .graph-container {
     flex-wrap: wrap;
+  }
+
+  .variables,
+  .headers {
+    width: 100%;
   }
 
   .input-http {
