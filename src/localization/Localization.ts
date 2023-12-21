@@ -56,6 +56,7 @@ export const Localization = {
     reload: 'Reload',
     boundary: 'Oops.. Something went wrong.',
     'page-not-found': 'Page not Found',
+    schema: 'Schema',
   },
 
   ru: {
@@ -114,5 +115,6 @@ export const Localization = {
     reload: 'Обновить',
     boundary: 'Уупс.. Что-то пошло не так.',
     'page-not-found': 'Страница не найдена',
+    schema: 'Схема',
   },
 };

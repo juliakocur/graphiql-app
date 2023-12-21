@@ -21,6 +21,7 @@
     "@mui/material": "^5.14.20",
     "@reduxjs/toolkit": "^1.9.7",
     "@types/react-redux": "^7.1.30",
+    "@uiw/codemirror-theme-dracula": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",
     "cm6-graphql": "^0.0.12",
     "firebase": "^10.7.0",

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/reduxHooks';
 import { LanguageContext } from '../../localization/LangContextProvider';
 import { Localization } from '../../localization/Localization';
 import CodeMirror from '@uiw/react-codemirror';
+import { dracula } from '@uiw/codemirror-theme-dracula';
 import { graphql } from 'cm6-graphql';
 
 export const GraphVariables = () => {
@@ -48,6 +49,7 @@ export const GraphVariables = () => {
                 setVariablesValue(value);
               }}
               onBlur={onBlurHandler}
+              theme={dracula}
             />
           </AccordionDetails>
         </Accordion>

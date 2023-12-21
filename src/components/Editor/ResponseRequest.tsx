@@ -9,6 +9,7 @@ import { sendRequest } from '../../utils/graphqlRequests';
 import { Button } from '@mui/material';
 import { prettifyRequestQuery } from '../../utils/prettify';
 import broom from '/broom.png';
+import { dracula } from '@uiw/codemirror-theme-dracula';
 
 export const ResponseRequest = ({
   mode,
@@ -90,6 +91,7 @@ export const ResponseRequest = ({
         editable={mode === Mode.request}
         readOnly={false}
         autoFocus={true}
+        theme={dracula}
       />
     </div>
   );

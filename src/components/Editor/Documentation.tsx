@@ -1,16 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { graphSlice } from '../../redux/GraphQLSlice';
 import { useAppSelector, useAppDispatch } from '../../redux/reduxHooks';
 import { sendRequest } from '../../utils/graphqlRequests';
-import folder from '/folder.png';
+import { Button } from '@mui/material';
 import { IIntrospectionQuery } from './Schema/SchemaTypes';
 import { SchemaContainer } from './Schema/SchemaContainer';
 import { IntrospectionQuery } from './Schema/SchemaQuery';
 import './Schema/documentation.css';
 import { schemaSlice } from '../../redux/SchemaSlice';
 import { Loader } from '../Loader/Loader';
+import { LanguageContext } from '../../localization/LangContextProvider';
+import { Localization } from '../../localization/Localization';
 
 export const Documentation = () => {
+  const { language } = useContext(LanguageContext);
   const { url } = useAppSelector((state) => state.graphReducer);
   const [startSchemaData, setStartSchemaData] =
     useState<IIntrospectionQuery | null>(null);
@@ -68,9 +71,14 @@ export const Documentation = () => {
         </div>
       )}
       {!isSchemaLoading && (
-        <button className="doc-button" onClick={openDocs}>
-          <img src={folder} alt="documentation" />
-        </button>
+        <Button
+          variant="contained"
+          size="medium"
+          className="doc-button"
+          onClick={openDocs}
+        >
+          {Localization[language].schema}
+        </Button>
       )}
     </>
   );
