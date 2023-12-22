@@ -71,6 +71,7 @@ export const GraphHeaders = () => {
               data-testid={`input-key-${index}`}
               value={item.key}
               onChange={(e) => handleChangeKey(e, index)}
+              placeholder={Localization[language].key}
             ></input>
             :
             <input
@@ -78,6 +79,7 @@ export const GraphHeaders = () => {
               data-testid={`input-value-${index}`}
               value={item.value}
               onChange={(e) => handleChangeValue(e, index)}
+              placeholder={Localization[language].value}
             ></input>
             <div
               className="delete-button"

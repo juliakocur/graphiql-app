@@ -14,6 +14,13 @@
   gap: 15px;
 }
 
+.doc-button {
+  top: 127px;
+  right: 25px;
+  height: 40px;
+  transform: rotate(-90deg);
+}
+
 .schema-page {
   display: flex;
   flex-direction: column;
@@ -114,15 +121,6 @@
   background-color: #35536e;
 }
 
-.doc-button {
-  position: relative;
-  top: 127px;
-  height: 40px;
-  padding: 0;
-  background: transparent;
-  border: transparent;
-  outline: none;
-}
 .schema {
   height: 650px;
   overflow-y: auto;
@@ -149,13 +147,10 @@
   text-align: start;
 }
 
-.graph-section {
-  max-width: calc(100% - 40px);
-}
-
-@media (max-width: 690px) {
+@media (max-width: 860px) {
   .graph {
     flex-direction: column;
+    padding: 0 10px;
   }
   .schema {
     height: 0;
@@ -167,6 +162,7 @@
   }
   .schema.open {
     width: 100%;
+    position: static;
   }
   .schema-container {
     height: auto;
@@ -177,5 +173,16 @@
   .doc-button,
   .schema-loader {
     top: 0;
+  }
+
+  .doc-button {
+    height: 40px;
+    left: 40%;
+    width: 100px;
+    transform: rotate(0deg);
+    top: 20px;
+  }
+  .graph-section {
+    width: unset;
   }
 }

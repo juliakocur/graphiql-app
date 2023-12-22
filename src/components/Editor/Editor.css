@@ -1,12 +1,12 @@
 .graph {
   display: flex;
-  max-width: 1280px;
   margin: 0 auto;
   justify-content: center;
 }
 
 .graph-section {
   width: 100%;
+  max-width: 1000px;
   height: 100%;
   min-height: 650px;
   display: flex;
@@ -15,15 +15,13 @@
   flex-wrap: wrap;
   padding: 20px;
   font-size: 14px;
+  min-width: 305px;
+  flex-shrink: 1;
 }
 
 .graph-container {
   padding: 20px 0;
   gap: 20px;
-}
-
-.doc-button img {
-  width: 45px;
 }
 
 .trash {
@@ -36,14 +34,18 @@
 }
 
 .request-container {
+  max-width: 1000px;
   position: relative;
+  background-color: #282a36;
+  margin: 0 auto;
+  border-radius: 5px;
 }
 
 .prettify-button {
   position: absolute;
   z-index: 1;
-  right: 18px;
-  top: 5px;
+  right: 0px;
+  top: -40px;
 }
 
 .graph-content {
@@ -53,7 +55,6 @@
 
 .request-area,
 .response-area {
-  width: 100%;
   min-height: 180px;
   height: auto;
   resize: none;
@@ -89,11 +90,15 @@
   text-align: left;
   height: 115px;
   overflow-y: auto;
+  background-color: #282a36;
+  border-radius: 5px;
 }
 
 .submit-button {
   height: 30px;
   font-size: 24px;
+  position: absolute;
+  top: 35px;
 }
 
 .url-input,
@@ -108,6 +113,7 @@
   gap: 10px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .variables {
@@ -140,8 +146,7 @@
 }
 
 .add-button {
-  width: 150px;
-  padding: 10px;
+  padding: 10px 0;
 }
 
 .input-key,
@@ -150,22 +155,24 @@
   min-height: 25px;
 }
 
-@media (max-width: 865px) {
-  .graph-container,
+@media (max-width: 1200px) {
   .variables-headers {
     flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 865px) {
+  .graph-container {
+    flex-wrap: wrap;
+  }
+
+  .variables,
+  .headers {
+    width: 100%;
   }
 
   .input-http {
     width: 100%;
-  }
-
-  .graph-section {
-    padding: 0 10px 0 0;
-  }
-
-  .submit-button {
-    top: 0px;
   }
 
   .variables {
@@ -173,8 +180,21 @@
   }
 }
 
+@media (max-width: 690px) {
+  .graph-section {
+    width: 100%;
+    padding: 0;
+  }
+  .graph {
+    padding: 0 5px;
+  }
+}
+
 .response-request {
   width: 100%;
+  max-width: 1000px;
+  position: relative;
+  padding: 30px 0;
 }
 
 .response-request.loader {
@@ -190,4 +210,5 @@
   gap: 5px;
   align-items: center;
   height: fit-content;
+  justify-content: center;
 }
